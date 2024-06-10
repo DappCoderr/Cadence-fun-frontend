@@ -31,7 +31,7 @@ export default function LoginPage() {
           <Button
             href={"/game"}
             shadow={"large"}
-            className="w-[285px] py-2 px-4 h-[110px] flex flex-col items-center"
+            className="w-[285px] py-2 px-4 h-[110px]  flex-col"
           >
             <Image src={"angels/fallenAngel.png"} className="h-10 " />
             Connect

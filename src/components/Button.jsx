@@ -10,7 +10,7 @@ export default function Button({
 }) {
   const navigate = useNavigate();
   const shadows = {
-    small: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    small: "1px 2px 0px 0px #000",
     medium: "0px 4px 4px rgba(0, 0, 0, 0.25)",
     large: "5px 6px 0px 0px var(--black)",
     none: "none",
@@ -24,7 +24,7 @@ export default function Button({
         }
       }}
       style={{ boxShadow: shadows[shadow || "medium"] }}
-      className={` border-2 border-black text-[20px] font-bold uppercase rounded-[10px] ${className}`}
+      className={` border-2 flex gap-2 items-center justify-center border-black text-[20px] font-bold uppercase rounded-[10px] ${className}`}
       {...props}
     >
       {children}

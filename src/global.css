@@ -25,6 +25,14 @@
 .tiny5 {
     font-family: "Tiny5", sans-serif;
 }
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 body {
     @apply w-screen;
     overflow: hidden;
@@ -79,33 +87,42 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
     color: #000;
     font-weight: 600;
+    font-style: normal;
     line-height: 93%; /* 82.77px */
 }
 
 h1 {
     font-family: Teko;
     font-size: 89px;
-    font-style: normal;
     font-weight: 600;
     line-height: 93%; /* 82.77px */
 }
 
 h2 {
     font-size: 42px;
-    font-style: normal;
     font-weight: 500;
     line-height: 100%; /* 42px */
 }
 
 h3 {
+    color: #000;
+    font-size: 24px;
+    line-height: 93%; /* 22.32px */
+}
+
+h4 {
     font-size: 16px;
-    font-style: normal;
     font-weight: 500;
     line-height: 80%; /* 12.8px */
     text-transform: uppercase;
+}
+p {
+    font-size: 16px;
+    font-weight: 400;
 }
 
 .highlight {
@@ -117,8 +134,8 @@ h3 {
 #logo {
     @apply tiny5;
     font-size: 28px;
-    font-style: normal;
     font-weight: 400;
+    font-style: normal;
     line-height: 80%; /* 22.4px */
     text-transform: uppercase;
 
