@@ -1,6 +1,15 @@
+import { Suspense } from "react";
 import { useImage } from "react-image";
 
-export default function MyImageComponent({ src, ...props }) {
+export default function MyImageComponent(props) {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ImageCompBase {...props} />
+    </Suspense>
+  );
+}
+
+const ImageCompBase = ({ src, ...props }) => {
   const { src: imgSrc, error } = useImage({
     srcList: src,
   });
@@ -10,4 +19,4 @@ export default function MyImageComponent({ src, ...props }) {
     return null;
   }
   return <img src={imgSrc} {...props} />;
-}
+};
