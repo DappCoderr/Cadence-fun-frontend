@@ -26,7 +26,12 @@ const HasKnight = ({ name = "Rico", wins, attack, ...props }) => {
       <GameBackground
         className={"flex flex-col items-center justify-center gap-8 !h-[90vh]"}
       >
-        <ShadowText className="text-brown">{name}</ShadowText>
+        <ShadowText
+          className="text-brown tracking-wider text-[64px]"
+          size={"large"}
+        >
+          {name}
+        </ShadowText>
         <Knight wins={wins} attack={attack} />
         <Button
           shadow="large"
