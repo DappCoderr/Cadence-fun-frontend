@@ -7,11 +7,16 @@
     --black: #000000;
     --white: #ffffff;
     --bg: #f0f0f0;
+    --bg-orange: #e49257;
     --yellow: #fdc32e;
     --accent: #d0effb;
     --primary: #fea15d;
     --secondary: #ffc8a1;
     --brown: #8d7761;
+    --light-brown: #d8cdc6;
+    --dark: #363737;
+
+    --shadow-text: 3px 4px 0px var(--black);
 }
 
 .teko {
@@ -22,13 +27,14 @@
 }
 body {
     @apply w-screen;
-    overflow-x: hidden;
+    overflow: hidden;
     font-family: Teko;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     -ms-text-size-adjust: none;
     -webkit-text-size-adjust: none;
+    background-color: var(--bg);
 }
 
 /* SCROLLBAR */
@@ -102,9 +108,15 @@ h3 {
     text-transform: uppercase;
 }
 
+.highlight {
+    text-shadow: var(--shadow-text);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: var(--black);
+}
+
 #logo {
     @apply tiny5;
-    /* font-size: 28px; */
+    font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: 80%; /* 22.4px */
