@@ -127,7 +127,7 @@ p {
 
 .highlight {
     text-shadow: var(--shadow-text);
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: var(--black);
 }
 

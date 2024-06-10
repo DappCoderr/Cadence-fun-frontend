@@ -2,29 +2,40 @@ import GameBackground from "./GameBackground";
 import Header from "./Header";
 import Image from "@/components/Image";
 import Button from "@/components/Button";
+import ShadowText from "@/components/ShadowText";
+import Knight from "@/components/Knight";
 
 export default function GamePage() {
   const isKnight = true;
+  const knightInfo = {
+    wins: 0,
+    attack: 0,
+    name: "Rico",
+  };
   return (
     <>
       <Header />
-      {isKnight ? <Knight /> : <NoKnight />}
+      {isKnight ? <HasKnight {...knightInfo} /> : <NoKnight />}
     </>
   );
 }
 
-const Knight = () => {
+const HasKnight = ({ name = "Rico", wins, attack, ...props }) => {
   return (
     <>
       <GameBackground
-        className={"flex flex-col items-center justify-center gap-8 !h-[95vh]"}
+        className={"flex flex-col items-center justify-center gap-8 !h-[90vh]"}
       >
-        <Button shadow="large" href="/play" className={` px-6 py-4`}>
-          <Image
-            src={"angels/angelSlashBig.png"}
-            className={" h-[71px] mr-1"}
-          />
-          <span>Create</span>
+        <ShadowText className="text-brown">{name}</ShadowText>
+        <Knight wins={wins} attack={attack} />
+        <Button
+          shadow="large"
+          href="/play"
+          className={` px-4 py-2 bg-accent rounded-[20px] `}
+        >
+          <Image src={"angels/princeSlash.png"} className={" h-[28px] mr-1"} />
+          <span>Start Battle</span>
+          <Image src={"angels/angelSlash.png"} className={" h-[28px] mr-1"} />
         </Button>
       </GameBackground>
     </>
