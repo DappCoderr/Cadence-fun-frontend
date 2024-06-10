@@ -5,8 +5,12 @@ import Image from "@/components/Image";
 import ShadowText from "@/components/ShadowText";
 import Knight from "@/components/Knight";
 export default function PlayPage() {
-  const knight1Info = {};
+  const knight1Info = {
+    name: "Rico",
+    color: "brown",
+  };
   const knight2Info = {
+    name: "Andrew",
     leftImg: "leftBorder2.png",
     rightImg: "rightBorder2.png",
     wins: 0,
@@ -14,7 +18,7 @@ export default function PlayPage() {
     attack: 0,
     color: "light-brown",
   };
-  const color = (col) => `var(--${col})`;
+  const color = (col) => (col ? `var(--${col})` : "");
   return (
     <>
       <Header />
@@ -23,13 +27,29 @@ export default function PlayPage() {
       >
         {/* fighting knights */}
         <div className="flex items-center justify-between w-full max-w-3xl">
-          <Knight {...knight1Info} />
+          {/* knight 1 */}
+          <div className="flex flex-col gap-4 items-center">
+            <Knight {...knight1Info} color={color(knight1Info.color)} />
+            <ShadowText color={color(knight1Info.color)} className=" text-4xl">
+              {knight1Info.name || "Player 1"}
+            </ShadowText>
+          </div>
           <ShadowText className="text-red text-[40px]">VS</ShadowText>
-          <Knight
-            isLeft={true}
-            {...knight2Info}
-            color={color(knight2Info.color)}
-          />
+
+          {/* knight 2 */}
+          <div className="flex flex-col gap-4 items-center">
+            <Knight
+              isLeft={true}
+              {...knight2Info}
+              color={color(knight2Info.color)}
+            />
+            <ShadowText
+              color={color(knight2Info.color)}
+              className="text-red text-4xl"
+            >
+              {knight2Info.name || "Player 2"}
+            </ShadowText>
+          </div>
         </div>
         {/* buttons */}
         <Button

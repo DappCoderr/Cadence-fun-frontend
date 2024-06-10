@@ -17,6 +17,7 @@
     --dark: #363737;
 
     --shadow-text: 3px 4px 0px var(--black);
+    --shadow-text1: 1px 2px 0px var(--black);
 }
 
 .teko {
@@ -128,6 +129,12 @@ p {
 .highlight {
     text-shadow: var(--shadow-text);
     -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: var(--black);
+}
+
+.highlight1 {
+    text-shadow: var(--shadow-text1);
+    -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--black);
 }
 
