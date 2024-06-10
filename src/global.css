@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --red: #be2e2e;
+    --black: #000000;
+    --white: #ffffff;
+    --bg: #f0f0f0;
+    --yellow: #fdc32e;
+    --accent: #d0effb;
+    --primary: #fea15d;
+    --secondary: #ffc8a1;
+    --brown: #8d7761;
+}
+
+.teko {
+    font-family: "Teko", sans-serif;
+}
+.tiny5 {
+    font-family: "Tiny5", sans-serif;
+}
+body {
+    @apply w-screen;
+    overflow-x: hidden;
+    font-family: Teko;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -ms-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+}
+
+/* SCROLLBAR */
+.scrollbar {
+    overflow-y: hidden;
+}
+
+.scrollbar-x {
+    overflow-x: hidden;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    height: 0;
+    width: 0;
+}
+.scrollbar::-webkit-scrollbar,
+.scrollbar-x::-webkit-scrollbar {
+    height: 5px;
+    width: 5px;
+}
+
+.scrollbar:hover::-webkit-scrollbar,
+.scrollbar-x:hover::-webkit-scrollbar {
+    transition: heigth 2s ease;
+    height: 5px;
+    width: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb,
+.scrollbar-x::-webkit-scrollbar-thumb {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+/* TEXT */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #000;
+    font-weight: 600;
+    line-height: 93%; /* 82.77px */
+}
+
+h1 {
+    font-family: Teko;
+    font-size: 89px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 93%; /* 82.77px */
+}
+
+h2 {
+    font-size: 42px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 42px */
+}
+
+h3 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 80%; /* 12.8px */
+    text-transform: uppercase;
+}
+
+#logo {
+    @apply tiny5;
+    /* font-size: 28px; */
+    font-style: normal;
+    font-weight: 400;
+    line-height: 80%; /* 22.4px */
+    text-transform: uppercase;
+
+    color: #000;
+}
+
+/* BUTTONS */
