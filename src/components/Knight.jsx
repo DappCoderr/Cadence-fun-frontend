@@ -1,6 +1,20 @@
 import Image from "@/components/Image";
 import KnightFrameBg from "./KnightFrameBg";
-export default function Knight({ className, wins = 5, attack = 10, ...props }) {
+export default function Knight({
+  className,
+  wins = 5,
+  attack = 10,
+  character,
+  isLeft,
+  rightImg,
+  leftImg,
+  color,
+  ...props
+}) {
+  const characters = {
+    wizard: "wizardAngelIdle.png",
+    angel: "angelIdle.png",
+  };
   return (
     <div>
       {/* knight image */}
@@ -8,11 +22,15 @@ export default function Knight({ className, wins = 5, attack = 10, ...props }) {
         style={{
           boxShadow:
             "0px 2px 7.6px 0px rgba(255, 255, 255, 0.25) inset, 0px -2px 7.6px 0px rgba(255, 255, 255, 0.25) inset",
+          backgroundColor: color || "var(--brown)",
         }}
-        className={`${className} rounded-t-[20px] bg-brown border-black border-2 w-[284px] h-[336px] overflow-hidden`}
+        className={`${className} rounded-t-[20px]  border-black border-2 w-[284px] h-[336px] overflow-hidden`}
       >
-        <KnightFrameBg>
-          <Image src={"angels/wizardAngelIdle.png"} className={"h-32"} />
+        <KnightFrameBg rightImg={rightImg} leftImg={leftImg}>
+          <Image
+            src={`angels/${characters[character] || "wizardAngelIdle.png"}`}
+            className={`h-32  ${isLeft ? "transform scale-x-[-1]" : ""}`}
+          />
         </KnightFrameBg>
       </div>
       {/* details */}

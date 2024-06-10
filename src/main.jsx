@@ -4,6 +4,7 @@ import LoginPage from "@/components/LoginPage";
 import "./global.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GamePage from "@/components/GamePage.jsx";
+import PlayPage from "@/components/PlayPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/game",
     element: <GamePage />,
+  },
+  {
+    path: "/play",
+    element: <PlayPage />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
