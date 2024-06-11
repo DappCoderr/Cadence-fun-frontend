@@ -96,11 +96,17 @@ const MovingBanner = () => {
     },
     { label: "Save the world" },
     { src: "logo.png" },
+    {
+      label: "Cadence Fun",
+    },
+    {
+      src: "angels/angelSlash.png",
+    },
   ];
   return (
     <>
-      <div className="bg-accent -rotate-6 w-[60%] bottom-10 h-[110px] left-[45%] absolute -z-10 border border-black px-4 py-2">
-        <div className="border h-full border-black border-dashed flex items-center flex-row gap-2 overflow-hidden">
+      <div className=" bg-accent -rotate-6 w-[100%] bottom-10 h-[110px] left-[45%] absolute -z-10 border border-black px-4 py-2">
+        <div className="moveLeft border h-full border-black border-dashed flex items-center flex-row gap-2 overflow-hidden">
           {items.map(({ label, src }, index) => {
             if (label) {
               return (

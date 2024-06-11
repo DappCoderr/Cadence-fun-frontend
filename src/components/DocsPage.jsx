@@ -84,7 +84,7 @@ export default function DocsPage() {
         <div className="flex-[3] border-2 rounded-[10px] border-black h-full bg-secondary w-full shadow2"></div>
       </div>
       {/* footer */}
-      <div className="w-full max-h-8 text-white px-6 bg-black flex-1 flex items-center">
+      <div className="w-full max-h-8 text-white px-6 bg-black flex-1 flex items-center text-opacity-60">
         @copyright CadenceFun
       </div>
     </div>

@@ -162,3 +162,27 @@ p {
 .shadow2 {
     box-shadow: var(--shadow-text2);
 }
+
+/*  Animations */
+@keyframes moveRight {
+    0% {
+        transform: translateX(-50%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+@keyframes moveLeft {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-40%);
+    }
+}
+.moveLeft {
+    animation: moveLeft 20s linear infinite;
+}
+.moveRight {
+    animation: moveRight 60s linear infinite;
+}
