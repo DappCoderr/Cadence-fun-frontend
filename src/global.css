@@ -192,12 +192,12 @@ p {
     animation: moveRight 60s linear infinite;
 }
 /* button animate */
-button.shadow1:hover:enabled,
-select.cardCommon:hover {
+button.shadow1:hover:enabled {
     box-shadow: 2px 3px 0px 0px var(--black);
     transform: translate(-1px, -1px);
 }
-button.shadow2:hover:enabled {
+button.shadow2:hover:enabled,
+select.shadow2:hover {
     box-shadow: 4px 5px 0px 0px var(--black);
     transform: translate(-2px, -2px);
 }
