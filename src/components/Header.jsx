@@ -9,7 +9,7 @@ export default function Header() {
   const isDocs = location.pathname === "/docs";
   return (
     <>
-      <div className="h-10 relative  max-h-10 border-b-2 z-10  bg-bg border-black  flex flex-row justify-between items-center px-6 w-screen">
+      <div className="h-10 flex-shrink-0 relative  max-h-10 border-b-2 z-10  bg-bg border-black  flex flex-row justify-between items-center px-6 w-screen">
         <Logo />
         {/* wallet address */}
         <div className="flex items-center gap-4 h-6">

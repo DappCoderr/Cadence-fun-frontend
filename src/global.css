@@ -227,3 +227,87 @@ button {
         transform: scale(0.99) translate(4px, 4px) !important;
     }
 }
+
+/* MARKDOWN */
+
+.markdown {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+    & > * {
+        white-space: wrap;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-transform: capitalize;
+    }
+    h2 {
+        margin-bottom: 10px;
+    }
+    ol {
+        list-style: decimal;
+    }
+
+    ol,
+    ul {
+        margin-left: 20px;
+        gap: 16px;
+        display: flex;
+        flex-direction: column;
+    }
+    ul {
+        list-style: disc;
+        gap: 10px;
+    }
+    h4,
+    h3 {
+        margin-top: 30px;
+        padding-top: 16px;
+    }
+    h4 {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 80%;
+        text-transform: uppercase;
+    }
+    h3 {
+        font-weight: 500;
+        font-size: 24px;
+    }
+    p,
+    li {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 150%;
+        font-family: Inter;
+    }
+
+    pre {
+        div,
+        span {
+            background: var(--bg) !important;
+        }
+        span {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        background: var(--bg) !important;
+        width: 100%;
+        background-color: var(--bg);
+        border-radius: 5px;
+        border: 1px solid var(--bg2);
+        code {
+            background: transparent !important;
+            @apply w-full;
+            line-height: 150%;
+            font-size: 14px !important;
+            font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo,
+                Consolas, "Liberation Mono", monospace;
+        }
+    }
+}
