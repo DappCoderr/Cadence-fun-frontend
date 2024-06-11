@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GamePage from "@/components/GamePage.jsx";
 import DocsPage from "@/components/DocsPage.jsx";
 import PlayPage from "@/components/PlayPage.jsx";
+import WinsPage from "@/components/WinsPage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/docs",
     element: <DocsPage />,
+  },
+  {
+    path: "/win",
+    element: <WinsPage />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

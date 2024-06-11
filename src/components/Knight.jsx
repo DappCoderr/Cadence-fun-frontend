@@ -1,5 +1,6 @@
 import Image from "@/components/Image";
 import KnightFrameBg from "./KnightFrameBg";
+import { useState, useEffect } from "react";
 export default function Knight({
   className,
   wins = 5,
@@ -9,12 +10,46 @@ export default function Knight({
   rightImg,
   leftImg,
   color,
+  isAttacking,
+  isLost,
   ...props
 }) {
   const characters = {
-    wizard: "wizardAngelIdle.png",
-    angel: "angelIdle.png",
+    wizard: "wizardIdle.gif",
+    angel: "angelIdle.gif",
+    reaper: "reaperIdle.gif",
+    prince: "princeIdle.gif",
   };
+  const attackCharacters = {
+    wizard: "wizardSlash.gif",
+    angel: "angelSlash.gif",
+  };
+  const hurtCharacters = {
+    wizard: "wizardHurt.gif",
+    angel: "angelHurt.gif",
+  };
+  const [currentCharacter, setCurrentCharacter] = useState(
+    characters[character || "wizard"],
+  );
+
+  useEffect(() => {
+    console.log("isAttacking", isAttacking, isLost, character);
+    let timer = null;
+    if (isLost) {
+      setCurrentCharacter(hurtCharacters[character]);
+    } else if (isAttacking) {
+      setCurrentCharacter(attackCharacters[character]);
+    } else {
+      setCurrentCharacter(characters[character]);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isAttacking, isLost]);
+  if (!character) {
+    console.error("Character prop is required");
+    return null;
+  }
   return (
     <div
       className="rounded-[20px]"
@@ -33,8 +68,8 @@ export default function Knight({
       >
         <KnightFrameBg rightImg={rightImg} leftImg={leftImg}>
           <Image
-            src={`angels/${characters[character] || "wizardAngelIdle.png"}`}
-            className={`h-32  ${isLeft ? "transform scale-x-[-1]" : ""}`}
+            src={`angels/${currentCharacter}`}
+            className={`h-52  ${isLeft ? "transform scale-x-[-1]" : ""}`}
           />
         </KnightFrameBg>
       </div>

@@ -20,7 +20,13 @@ export default function GamePage() {
   );
 }
 
-const HasKnight = ({ name = "Rico", wins, attack, ...props }) => {
+const HasKnight = ({
+  name = "Rico",
+  wins,
+  attack,
+  character = "wizard",
+  ...props
+}) => {
   return (
     <>
       <GameBackground
@@ -32,7 +38,7 @@ const HasKnight = ({ name = "Rico", wins, attack, ...props }) => {
         >
           {name}
         </ShadowText>
-        <Knight wins={wins} attack={attack} />
+        <Knight character={character} wins={wins} attack={attack} />
         <Button
           shadow="large"
           href="/play"
