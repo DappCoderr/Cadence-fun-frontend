@@ -41,9 +41,9 @@ export default function PlayPage() {
     }
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setLost(-1);
-    navigate("/win", {
+    navigate("/game", {
       state: {
-        isLost: lost === 0,
+        lost: lost,
       },
     });
     // send to win or lose screen
@@ -51,9 +51,7 @@ export default function PlayPage() {
   return (
     <>
       <Header />
-      <GameBackground
-        className={"flex flex-col items-center justify-center gap-8 !h-[90vh]"}
-      >
+      <GameBackground>
         {/* fighting knights */}
         <div className="flex items-center justify-between w-full max-w-3xl">
           {/* knight 1 */}

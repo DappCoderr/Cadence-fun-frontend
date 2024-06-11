@@ -28,10 +28,6 @@ const router = createBrowserRouter([
     path: "/docs",
     element: <DocsPage />,
   },
-  {
-    path: "/win",
-    element: <WinsPage />,
-  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

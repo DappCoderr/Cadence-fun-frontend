@@ -2,7 +2,9 @@ import Image from "@/components/Image";
 export default function GameBackground({ children, className, ...props }) {
   return (
     <>
-      <div className={`${className} h-screen pt-10 w-screen`}>
+      <div
+        className={`${className} pt-10 w-screen flex flex-col items-center justify-center gap-8 h-[90vh]`}
+      >
         <LeftBg />
         {children}
         <RightBg />
