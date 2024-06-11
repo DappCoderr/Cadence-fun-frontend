@@ -16,7 +16,12 @@ export default function Knight({
     angel: "angelIdle.png",
   };
   return (
-    <div>
+    <div
+      className="rounded-[20px]"
+      style={{
+        boxShadow: "0px 8px 20px 0px rgba(0, 0, 0, 0.20)",
+      }}
+    >
       {/* knight image */}
       <div
         style={{

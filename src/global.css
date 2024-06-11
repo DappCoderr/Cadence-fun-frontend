@@ -18,8 +18,9 @@
     --dark: #363737;
 
     --shadow-text: 3px 4px 0px var(--black);
-    --shadow-text1: 1px 2px 0px var(--black);
-    --shadow-text2: 2px 3px 0px var(--black);
+    --shadow1: 1px 2px 0px var(--black);
+    --shadow2: 2px 3px 0px var(--black);
+    --shadow3: 5px 6px 0px var(--black);
 }
 
 .teko {
@@ -135,7 +136,7 @@ p {
 }
 
 .highlight1 {
-    text-shadow: var(--shadow-text1);
+    text-shadow: var(--shadow1);
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: var(--black);
 }
@@ -157,13 +158,17 @@ p {
     box-shadow: var(--shadow-text);
 }
 .shadow1 {
-    box-shadow: var(--shadow-text1);
+    box-shadow: var(--shadow1);
 }
 .shadow2 {
-    box-shadow: var(--shadow-text2);
+    box-shadow: var(--shadow2);
+}
+.shadow3 {
+    box-shadow: var(--shadow3);
 }
 
 /*  Animations */
+/* moving */
 @keyframes moveRight {
     0% {
         transform: translateX(-50%);
@@ -185,4 +190,40 @@ p {
 }
 .moveRight {
     animation: moveRight 60s linear infinite;
+}
+/* button animate */
+button.shadow1:hover:enabled,
+select.cardCommon:hover {
+    box-shadow: 2px 3px 0px 0px var(--black);
+    transform: translate(-1px, -1px);
+}
+button.shadow2:hover:enabled {
+    box-shadow: 4px 5px 0px 0px var(--black);
+    transform: translate(-2px, -2px);
+}
+button.shadow3:hover:enabled {
+    box-shadow: 7px 8px 0px 0px var(--black);
+    transform: translate(-2px, -2px);
+}
+
+button {
+    transition:
+        transform 0.1s ease-in-out,
+        box-shadow 0.1s ease-in-out;
+    &:hover:enabled {
+        opacity: 1 !important;
+    }
+
+    &.shadow1:active:enabled {
+        box-shadow: unset !important;
+        transform: scale(0.99) translate(2px, 2px) !important;
+    }
+    &.shadow2:active:enabled {
+        box-shadow: unset !important;
+        transform: scale(0.99) translate(3px, 3px) !important;
+    }
+    &.shadow3:active:enabled {
+        box-shadow: unset !important;
+        transform: scale(0.99) translate(4px, 4px) !important;
+    }
 }
