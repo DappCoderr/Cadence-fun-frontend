@@ -4,6 +4,7 @@ import Image from "@/components/Image";
 import Button from "@/components/Button";
 import ShadowText from "@/components/ShadowText";
 import Knight from "@/components/Knight";
+import { useLocation } from "react-router-dom";
 
 export default function GamePage() {
   const isKnight = true;
@@ -12,27 +13,57 @@ export default function GamePage() {
     attack: 0,
     name: "Rico",
   };
+  const { state } = useLocation();
+  const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
+  console.log("lost", lost);
+  const isResultScreen = typeof lost === "number";
+  const isLost = lost === 0;
+  let noKnightProps = null;
+  if (isResultScreen) {
+    if (isLost) {
+      noKnightProps = {
+        message: "You lost!",
+        buttonText: "Try Again",
+        href: "/game",
+      };
+    } else {
+      noKnightProps = {
+        message: "You won!",
+        buttonText: "Play Again",
+        href: "/game",
+        img: { src: "win.gif" },
+      };
+    }
+  }
   return (
     <>
       <Header />
-      {isKnight ? <HasKnight {...knightInfo} /> : <NoKnight />}
+      {isKnight && !isResultScreen ? (
+        <HasKnight {...knightInfo} />
+      ) : (
+        <NoKnight {...noKnightProps} />
+      )}
     </>
   );
 }
 
-const HasKnight = ({ name = "Rico", wins, attack, ...props }) => {
+const HasKnight = ({
+  name = "Rico",
+  wins,
+  attack,
+  character = "wizard",
+  ...props
+}) => {
   return (
     <>
-      <GameBackground
-        className={"flex flex-col items-center justify-center gap-8 !h-[90vh]"}
-      >
+      <GameBackground>
         <ShadowText
           className="text-brown tracking-wider text-[64px]"
           size={"large"}
         >
           {name}
         </ShadowText>
-        <Knight wins={wins} attack={attack} />
+        <Knight character={character} wins={wins} attack={attack} />
         <Button
           shadow="large"
           href="/play"
@@ -47,34 +78,38 @@ const HasKnight = ({ name = "Rico", wins, attack, ...props }) => {
   );
 };
 
-const NoKnight = () => {
+const NoKnight = ({ message, buttonText, href, img }) => {
   return (
-    <GameBackground
-      className={"flex flex-col items-center justify-center gap-8 !h-[95vh]"}
-    >
+    <GameBackground>
       <div className="flex flex-col items-center gap-5">
         <div className="flex flex-col items-center">
           <Image
             src={"noKnight.gif"}
-            className={"h-[80px] w-[80px] -mb-1 ml-1"}
+            className={"h-[80px] w-[80px] -mb-1 ml-1 z-10"}
+            {...img}
           />
           <div
             style={{
               borderTop: "1.5px dashed #000",
               background:
-                "linear-gradient(180deg, #D0EFFB -10.83%, #F4F4F4 82.5%)",
+                "linear-gradient(rgb(208, 239, 251) -10.83%, rgb(241 241 241) 82.5%)",
             }}
             className="border-t-[1.5px] h-6 border-black border-dotted w-[120px] "
           />
         </div>
         <h3 className="text-center max-w-[261px]">
-          No Knight found in your wallet. Create one to start playing!
+          {message ||
+            "No Knight found in your wallet. Create one to start playing!"}
         </h3>
       </div>
       <Image src={"iconLongSword.png"} className={"animate-bounce h-[36px]"} />
-      <Button shadow="large" href="/create" className={`flex-col px-6 py-4`}>
+      <Button
+        shadow="large"
+        href={href || "/create"}
+        className={`flex-col px-6 py-4`}
+      >
         <Image src={"angels/angelSlashBig.png"} className={" h-[71px] mr-1"} />
-        <span>Create</span>
+        <span>{buttonText || "Create"}</span>
       </Button>
     </GameBackground>
   );

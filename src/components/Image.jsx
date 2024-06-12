@@ -18,5 +18,13 @@ const ImageCompBase = ({ src, ...props }) => {
     console.log("Image not found", error);
     return null;
   }
-  return <img src={imgSrc} {...props} />;
+  return (
+    <img
+      onError={() => {
+        console.log("Image not found", error);
+      }}
+      src={imgSrc}
+      {...props}
+    />
+  );
 };
