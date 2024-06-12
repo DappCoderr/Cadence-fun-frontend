@@ -29,6 +29,39 @@ export default function DocsPage() {
       "Lesson 13",
       "Lesson 14",
     ],
+    "Module 3": [
+      "Lesson 1",
+      "Lesson 2",
+      "Lesson 3",
+      "Lesson 4",
+      "Lesson 5",
+      "Lesson 6",
+      "Lesson 7",
+      "Lesson 8",
+      "Lesson 9",
+    ],
+    "Module 4": [
+      "Lesson 1",
+      "Lesson 2",
+      "Lesson 3",
+      "Lesson 4",
+      "Lesson 5",
+      "Lesson 6",
+      "Lesson 7",
+      "Lesson 8",
+      "Lesson 9",
+      "Lesson 10",
+    ],
+    "Module 5": [
+      "Lesson 1",
+      "Lesson 2",
+      "Lesson 3",
+      "Lesson 4",
+      "Lesson 5",
+      "Lesson 6",
+      "Lesson 7",
+      "Lesson 8",
+    ],
   };
 
   const [selectedModule, setSelectedModule] = useState(Object.keys(data)[0]);
@@ -54,21 +87,27 @@ export default function DocsPage() {
       .then((text) => {
         // console.log("text recieved from file", path, text);
         let a = text.split(/put it to the test/i);
+        let test = "";
+        let solution = "";
+        let content = "";
         if (a.length === 2) {
-          setContent(a[0]);
+          content = a[0];
           a = a[1].split(/solution !!/i);
           if (a.length === 2) {
-            setTest(a[0]);
-            setSolution(a[1]);
+            test = a[0];
+            solution = a[1];
           } else {
-            setTest(a[0]);
-            setSolution("");
+            test = a[0];
           }
         } else {
-          setContent(text);
-          setTest("");
-          setSolution("");
+          content = a[0];
         }
+        if (test.startsWith(":**")) {
+          test = test.slice(3);
+        }
+        setContent(content);
+        setTest(test);
+        setSolution(solution);
       });
   }, [selectedLesson, selectedModule]);
   return (
@@ -113,7 +152,7 @@ export default function DocsPage() {
           className={` ${test ? "max-w-[50%]" : ""}  flex gap-3 flex-col h-full w-full`}
         >
           <div className="p-3 overflow-y-auto border-2 flex-1 w-full rounded-[10px] border-black  bg-white  shadow2">
-            {content && <Markdown>{content}</Markdown>}
+            {content && <Markdown path={basePath}>{content}</Markdown>}
           </div>
           <div className=" flex flex-row gap-3 flex-1 max-h-8 h-full w-full">
             <button
