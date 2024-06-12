@@ -42,7 +42,7 @@ export default function LoginPage() {
           </h1>
           {/* current user address */}
           <h1>{currentUser.addr}</h1>
-          {currentUser.loggedIn ? <AuthedState /> : <UnauthenticatedState />}
+          {currentUser.loggedIn ? <UnauthenticatedState /> : <AuthedState />}
           <p className="tiny5 text-xl text-red">Let’s save the world!</p>
           <MovingBanner />
         </div>
