@@ -247,10 +247,14 @@ button {
         text-transform: capitalize;
     }
     h2 {
-        margin-bottom: 10px;
+        margin-block: 10px;
     }
     ol {
         list-style: decimal;
+    }
+
+    hr {
+        display: none;
     }
 
     ol,

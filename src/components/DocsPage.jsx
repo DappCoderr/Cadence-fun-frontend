@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import Image from "@/components/Image";
+import Button from "@/components/Button";
 import { useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -33,6 +34,9 @@ export default function DocsPage() {
   const [selectedModule, setSelectedModule] = useState(Object.keys(data)[0]);
   const [selectedLesson, setSelectedLesson] = useState(0);
   const [content, setContent] = useState("");
+  const [test, setTest] = useState(null);
+  const [solution, setSolution] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
   const handleLessonIncrement = (increment = 1) => {
     if (selectedLesson < data[selectedModule].length - 1 && increment > 0) {
       setSelectedLesson(selectedLesson + increment);
@@ -49,7 +53,22 @@ export default function DocsPage() {
       .then((response) => response.text())
       .then((text) => {
         console.log("text recieved from file", path, text);
-        setContent(text);
+        let a = text.split(/put it to the test/i);
+        if (a.length === 2) {
+          setContent(a[0]);
+          a = a[1].split(/solution/i);
+          if (a.length === 2) {
+            setTest(a[0]);
+            setSolution(a[1]);
+          } else {
+            setTest(a[0]);
+            setSolution("");
+          }
+        } else {
+          setContent(text);
+          setTest("");
+          setSolution("");
+        }
       });
   }, [selectedLesson, selectedModule]);
   return (
@@ -90,36 +109,11 @@ export default function DocsPage() {
           </div>
         </div>
         {/* info part */}
-        <div className=" max-w-[50%]  flex gap-3 flex-col h-full w-full">
+        <div
+          className={` ${test ? "max-w-[50%]" : ""}  flex gap-3 flex-col h-full w-full`}
+        >
           <div className="p-3 overflow-y-auto border-2 flex-1 w-full rounded-[10px] border-black  bg-white  shadow2">
-            {content && (
-              <ReactMarkdown
-                components={{
-                  code({ node, inline, className, children, ...props }) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    console.log("match", match?.[1]);
-                    return !inline && match ? (
-                      <SyntaxHighlighter
-                        language={match[1]}
-                        PreTag="div"
-                        style={prism}
-                        {...props}
-                      >
-                        {String(children).replace(/\n$/, "")}
-                      </SyntaxHighlighter>
-                    ) : (
-                      <code className={className} {...props}>
-                        {children}
-                      </code>
-                    );
-                  },
-                }}
-                className={"markdown"}
-                remarkPlugins={[remarkGfm]}
-              >
-                {content}
-              </ReactMarkdown>
-            )}
+            {content && <Markdown>{content}</Markdown>}
           </div>
           <div className=" flex flex-row gap-3 flex-1 max-h-8 h-full w-full">
             <button
@@ -144,7 +138,25 @@ export default function DocsPage() {
           </div>
         </div>
         {/* code part */}
-        <div className="max-w-[30%] border-2 rounded-[10px] border-black  h-full bg-secondary w-full shadow2"></div>
+        {test && (
+          <div className="max-w-[30%] relative border-2 rounded-[10px] border-black  h-full bg-secondary w-full shadow2 p-3">
+            <h2 className="mb-4 mt-2">
+              {solution && showSolution ? "Solution" : "Put it to the test"}
+            </h2>
+            <Markdown>{solution && showSolution ? solution : test}</Markdown>
+            {solution && (
+              <Button
+                onClick={() => {
+                  setShowSolution(!showSolution);
+                }}
+                className="bg-white absolute top-2 right-2 flex flex-col px-2 !gap-1 font-normal text-xs py-[8px]"
+              >
+                <Image src={"iconHint.png"} className="h-4 w-4" />
+                {showSolution ? "Hide" : "Hint"}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
       {/* footer */}
       <div className="flex-shrink-0  w-full max-h-8 text-white px-6 bg-black flex-1 flex items-center text-opacity-60">
@@ -153,3 +165,39 @@ export default function DocsPage() {
     </div>
   );
 }
+
+const Markdown = ({ children }) => {
+  if (!children) {
+    return <></>;
+  }
+  return (
+    <>
+      <ReactMarkdown
+        components={{
+          code({ node, inline, className, children, ...props }) {
+            const match = /language-(\w+)/.exec(className || "");
+            console.log("match", match?.[1]);
+            return !inline && match ? (
+              <SyntaxHighlighter
+                language={match[1]}
+                PreTag="div"
+                style={prism}
+                {...props}
+              >
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            );
+          },
+        }}
+        className={"markdown"}
+        remarkPlugins={[remarkGfm]}
+      >
+        {children}
+      </ReactMarkdown>
+    </>
+  );
+};
