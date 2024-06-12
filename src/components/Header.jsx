@@ -3,10 +3,26 @@ import Button from "@/components/Button";
 import Image from "@/components/Image";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import * as fcl from "@onflow/fcl";
+import { useEffect } from "react";
+import { useState } from "react";
+
 export default function Header() {
   const location = useLocation();
   console.log(location.pathname);
   const isDocs = location.pathname === "/docs";
+  const [currentUser, setCurrentUser] = useState(null);
+  const address = currentUser?.addr;
+  // Returns an unsubscribe function
+  useEffect(
+    () =>
+      fcl.currentUser.subscribe((currentUser) => {
+        console.log("The Current User", currentUser);
+        setCurrentUser(currentUser);
+      }),
+    [],
+  );
+
   return (
     <>
       <div className="h-10 flex-shrink-0 relative  max-h-10 border-b-2 z-10  bg-bg border-black  flex flex-row justify-between items-center px-6 w-screen">
@@ -16,16 +32,33 @@ export default function Header() {
           <Link className="tiny5 text-red" to={isDocs ? "/game" : "/docs"}>
             {isDocs ? "Lets Play" : "Lets Study"}!
           </Link>
-          <Button shadow="small" className="px-2 h-full rounded-lg">
+          {address ? (
             <>
-              <Image className="h-[14px]" src={"iconWallet.png"} />
-              <p className=" uppercase">0x1234...5678</p>
+              <Button shadow="small" className="px-2 h-full rounded-lg">
+                <>
+                  <Image className="h-[14px]" src={"iconWallet.png"} />
+                  <p className=" uppercase">
+                    {address.substring(0, 7)}...
+                    {address.substring(address.length - 5)}
+                  </p>
+                </>
+              </Button>
+              {/* logout */}
+              <Button
+                onClick={() => {
+                  fcl.unauthenticate();
+                }}
+                shadow="small"
+                className="w-6 h-full rounded-lg"
+              >
+                <Image className="h-[14px]" src={"iconExit.png"} />
+              </Button>
             </>
-          </Button>
-          {/* logout */}
-          <Button shadow="small" className="w-6 h-full rounded-lg">
-            <Image className="h-[14px]" src={"iconExit.png"} />
-          </Button>
+          ) : (
+            <Button href="/" shadow="small" className="px-2 h-full rounded-lg">
+              <p className="h-[12px]">Connect</p>
+            </Button>
+          )}
         </div>
       </div>
     </>

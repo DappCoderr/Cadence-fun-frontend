@@ -17,8 +17,8 @@ export default function Button({
   };
   return (
     <button
-      onClick={() => {
-        if (onClick) return onClick();
+      onClick={async () => {
+        if (onClick) await onClick();
         if (href) {
           navigate(href);
         }

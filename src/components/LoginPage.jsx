@@ -2,8 +2,20 @@ import Logo from "@/components/Logo";
 import Eclipse from "@/components/icons/Eclipse";
 import Button from "@/components/Button";
 import Image from "@/components/Image";
+import { useState, useEffect } from "react";
+import * as fcl from "@onflow/fcl";
+import "../config.js";
 
 export default function LoginPage() {
+  const [currentUser, setCurrentUser] = useState({
+    loggedIn: false,
+    addr: undefined,
+  });
+
+  useEffect(() => fcl.currentUser.subscribe(setCurrentUser), []);
+
+  console.log(currentUser.addr);
+
   return (
     <main className=" flex w-screen h-screen">
       {/* logo */}
@@ -28,14 +40,8 @@ export default function LoginPage() {
             <span className="text-bg z-10 relative">Flow wallet</span> to enter
             the mission
           </h1>
-          <Button
-            href={"/game"}
-            shadow={"large"}
-            className="w-[285px] py-2 px-4 h-[110px]  flex-col"
-          >
-            <Image src={"angels/fallenAngel.png"} className="h-10 " />
-            Connect
-          </Button>
+          {/* current user address */}
+          {currentUser.loggedIn ? <UnauthenticatedState /> : <AuthedState />}
           <p className="tiny5 text-xl text-red">Let’s save the world!</p>
           <MovingBanner />
         </div>
@@ -43,6 +49,38 @@ export default function LoginPage() {
     </main>
   );
 }
+
+const AuthedState = () => {
+  return (
+    <>
+      <Button
+        href={"/game"}
+        shadow={"large"}
+        className="w-[285px] py-2 px-4 h-[110px]  flex-col"
+        onClick={() => fcl.authenticate()}
+      >
+        <Image src={"angels/fallenAngel.png"} className="h-10 " />
+        Connect
+      </Button>
+    </>
+  );
+};
+
+const UnauthenticatedState = () => {
+  return (
+    <>
+      <Button
+        // href={"/game"}
+        shadow={"large"}
+        className="w-[285px] py-2 px-4 h-[110px]  flex-col"
+        onClick={() => fcl.unauthenticate()}
+      >
+        <Image src={"angels/fallenAngel.png"} className="h-10 " />
+        Disconnect
+      </Button>
+    </>
+  );
+};
 
 const ImageText = () => {
   return (
