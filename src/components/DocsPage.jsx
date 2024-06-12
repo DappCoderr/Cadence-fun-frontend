@@ -47,16 +47,16 @@ export default function DocsPage() {
   };
   const disableNext = selectedLesson === data[selectedModule].length - 1;
   const disablePrev = selectedLesson === 0;
+  const basePath = `/modules/${selectedModule}/`;
   useEffect(() => {
-    const path = `/modules/${selectedModule}/${data[selectedModule][selectedLesson]}.md`;
-    fetch(path)
+    fetch(basePath + `${data[selectedModule][selectedLesson]}.md`)
       .then((response) => response.text())
       .then((text) => {
-        console.log("text recieved from file", path, text);
+        // console.log("text recieved from file", path, text);
         let a = text.split(/put it to the test/i);
         if (a.length === 2) {
           setContent(a[0]);
-          a = a[1].split(/solution/i);
+          a = a[1].split(/solution !!/i);
           if (a.length === 2) {
             setTest(a[0]);
             setSolution(a[1]);
@@ -143,7 +143,9 @@ export default function DocsPage() {
             <h2 className="mb-4 mt-2">
               {solution && showSolution ? "Solution" : "Put it to the test"}
             </h2>
-            <Markdown>{solution && showSolution ? solution : test}</Markdown>
+            <Markdown path={basePath}>
+              {solution && showSolution ? solution : test}
+            </Markdown>
             {solution && (
               <Button
                 onClick={() => {
@@ -166,7 +168,7 @@ export default function DocsPage() {
   );
 }
 
-const Markdown = ({ children }) => {
+const Markdown = ({ children, path }) => {
   if (!children) {
     return <></>;
   }
@@ -174,9 +176,18 @@ const Markdown = ({ children }) => {
     <>
       <ReactMarkdown
         components={{
+          img({ src, ...props }) {
+            return (
+              <img
+                className="rounded-[10px] border-2 border-black"
+                src={path + src}
+                {...props}
+              />
+            );
+          },
           code({ node, inline, className, children, ...props }) {
             const match = /language-(\w+)/.exec(className || "");
-            console.log("match", match?.[1]);
+            // console.log("match", inline, className, props, children);
             return !inline && match ? (
               <SyntaxHighlighter
                 language={match[1]}
