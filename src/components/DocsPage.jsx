@@ -74,6 +74,8 @@ export default function DocsPage() {
   const [showSolution, setShowSolution] = useState(false);
   const [runConfetti, setRunConfetti] = useState(false);
   const [showModel, setShowModel] = useState(false);
+  console.log("showModel", showModel);
+  const [showConfetti, setShowConfetti] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const handleLessonIncrement = (increment = 1) => {
     if (selectedLesson < data[selectedModule].length - 1 && increment > 0) {
@@ -85,9 +87,11 @@ export default function DocsPage() {
       setSelectedModule(
         Object.keys(data)[Object.keys(data).indexOf(selectedModule) + 1],
       );
+      console.log("going to new module", showModel);
+      setShowModel(true);
       setSelectedLesson(0);
       setRunConfetti(true);
-      setShowModel(true);
+      setShowConfetti(true);
     } else if (selectedLesson > 0 && increment < 0) {
       setSelectedLesson(selectedLesson + increment);
     } else if (selectedLesson == 0 && increment < 0) {
@@ -99,17 +103,6 @@ export default function DocsPage() {
     }
   };
 
-  // useEffect(() => {
-  //   let timer;
-  //   if (runConfetti) {
-  //     timer = setTimeout(() => {
-  //       setRunConfetti(false);
-  //     }, 5000);
-  //   }
-  //   return () => {
-  //     clearTimeout(timer);
-  //   };
-  // }, [runConfetti]);
   const disableNext =
     selectedLesson == data[selectedModule].length - 1 &&
     Object.keys(data).indexOf(selectedModule) == Object.keys(data).length - 1;
@@ -148,16 +141,23 @@ export default function DocsPage() {
   return (
     <div className="h-screen flex flex-col w-screen relative">
       <Confetti
-        recycle={runConfetti}
-        run={selectedModule != "Module 1"}
+        recycle={showConfetti}
+        run={runConfetti}
         numberOfPieces={200}
+        onConfettiComplete={(confetti) => {
+          console.log("confetti completed", confetti);
+          if (!showConfetti) {
+            console.log("setting run confetti to false");
+            setRunConfetti(false);
+          }
+        }}
       />
       {/* modal */}
       {showModel && (
         <div
           onClick={() => {
             setShowModel(false);
-            setRunConfetti(false);
+            setShowConfetti(false);
           }}
           className="absolute  top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-40 flex items-center justify-center"
         >
