@@ -181,7 +181,7 @@ export default function DocsPage() {
           <div
             onClick={() => setShowDropdown(!showDropdown)}
             value={selectedModule}
-            className="outline-none relative flex uppercase text-base font-medium items-center justify-center border-2 flex-1 max-h-8 bg-accent w-full rounded-[10px] border-black  shadow2"
+            className="outline-none relative flex uppercase font-medium items-center justify-center border-2 flex-1 max-h-8 bg-accent w-full rounded-[10px] border-black  text-lg shadow2"
             onChange={(e) => {
               setSelectedModule(e.target.value);
               setSelectedLesson(0);
@@ -269,7 +269,7 @@ export default function DocsPage() {
                 className="bg-white absolute top-2 right-2 flex flex-col px-2 !gap-1 font-normal text-xs py-[8px]"
               >
                 <Image src={"iconHint.png"} className="h-4 w-4" />
-                {showSolution ? "Hide" : "Hint"}
+                {/* {showSolution ? "Hide" : "Hint"} */}
               </Button>
             )}
           </div>
