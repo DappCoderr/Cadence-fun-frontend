@@ -8,6 +8,7 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./config.js";
 import "./global.css";
+import Layout from "./components/Layout.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -36,6 +37,8 @@ const router = createBrowserRouter([
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Layout>
+      <RouterProvider router={router} />
+    </Layout>
   </React.StrictMode>,
 );
