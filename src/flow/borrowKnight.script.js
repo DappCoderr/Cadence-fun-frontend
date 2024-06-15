@@ -1,4 +1,6 @@
-export const GET_COLLECTION_LENGTH = `
+import * as fcl from "@onflow/fcl";
+
+const GET_BORROW_KNIGHT = `
 import NonFungibleToken from 0xNonFungibleToken
 import CryptoKnight from 0xCryptoKnight
 
@@ -26,3 +28,17 @@ pub struct ResultKnight{
         self.winCount = win
     }
 }`;
+
+export const borrowKnight = async (address, id) => {
+  try {
+    const response = await fcl.query({
+      cadence: GET_BORROW_KNIGHT,
+      args: (arg, t) => [arg(address, t.Address), arg(id, t.UInt64)],
+    });
+    console.log("response", response);
+    return response;
+  } catch (error) {
+    console.error("Error borrow knight:", error);
+    throw error;
+  }
+};

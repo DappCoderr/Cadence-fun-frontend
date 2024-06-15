@@ -1,4 +1,6 @@
-export const CREATE = `
+import * as fcl from "@onflow/fcl";
+
+const CREATE = `
 import NonFungibleToken from 0xNonFungibleToken
 import CryptoKnight from 0xCryptoKnight
 
@@ -17,3 +19,21 @@ let collectionRef: &{NonFungibleToken.CollectionPublic}
     self.collectionRef.deposit(token: <- nft)
   }
 }`;
+
+export async function createKnight(name, type) {
+  try {
+    const response = await fcl.mutate({
+      cadence: CREATE,
+      args: (arg, t) => [arg(name, t.String), arg(type, t.UInt8)],
+      payer: fcl.authz,
+      proposer: fcl.authz,
+      authorizations: [fcl.authz],
+      limit: 999,
+    });
+    console.log("response", response);
+    return response;
+  } catch (error) {
+    console.error("Error create knight:", error);
+    throw error;
+  }
+}
