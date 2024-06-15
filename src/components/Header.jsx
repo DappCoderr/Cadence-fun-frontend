@@ -29,7 +29,7 @@ export default function Header() {
         <Logo />
         {/* wallet address */}
         <div className="flex items-center gap-2 h-6">
-          <h4 className="h-[10px]">
+          <h4 className="h-[10px] mr-2">
             <Link className=" text-red" to={isDocs ? "/game" : "/docs"}>
               {isDocs ? "Lets Play" : "Lets Study"}!
             </Link>

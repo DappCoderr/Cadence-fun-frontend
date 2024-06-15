@@ -9,7 +9,7 @@ import { checkKnightCollection } from "../flow/checkCollection.script";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
 export default function GamePage() {
-  const [hasKnight, setHasKnight] = useState(false);
+  const [hasKnight, setHasKnight] = useState(true);
   const [currentUser, setCurrentUser] = useState({
     loggedIn: false,
     addr: undefined,
@@ -19,7 +19,7 @@ export default function GamePage() {
 
   useEffect(() => {
     checkKnightCollection(currentUser?.addr).then((result) => {
-      setHasKnight(result);
+      setHasKnight(true);
     });
   }, [currentUser?.addr]);
 
@@ -71,6 +71,7 @@ const HasKnight = ({
   character = "wizard",
   ...props
 }) => {
+  const [loading, setLoading] = useState(false);
   return (
     <>
       <GameBackground>
@@ -82,12 +83,18 @@ const HasKnight = ({
         </ShadowText>
         <Knight character={character} wins={wins} attack={attack} />
         <Button
+          disabled={loading}
+          onClick={async () => {
+            setLoading(true);
+            await new Promise((r) => setTimeout(r, 2000));
+            setLoading(false);
+          }}
           shadow="large"
           href="/play"
           className={` px-4 py-2 bg-accent rounded-[20px] `}
         >
           <Image src={"angels/princeSlash.png"} className={" h-[28px] mr-1"} />
-          <span>Start Battle</span>
+          <span>{loading ? "Finding opponent ..." : "Start Battle"}</span>
           <Image src={"angels/angelSlash.png"} className={" h-[28px] mr-1"} />
         </Button>
       </GameBackground>
