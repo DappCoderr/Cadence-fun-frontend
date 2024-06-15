@@ -5,9 +5,25 @@ import Button from "@/components/Button";
 import ShadowText from "@/components/ShadowText";
 import Knight from "@/components/Knight";
 import { useLocation } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useState } from "react";
+import { checkKnightCollection } from "../flow/checkCollection.script";
+import * as fcl from "@onflow/fcl";
 export default function GamePage() {
-  const isKnight = true;
+  const [hasKnight, setHasKnight] = useState(false);
+  const [currentUser, setCurrentUser] = useState({
+    loggedIn: false,
+    addr: undefined,
+  });
+
+  useEffect(() => fcl.currentUser.subscribe(setCurrentUser), []);
+
+  useEffect(() => {
+    checkKnightCollection(currentUser?.addr).then((result) => {
+      setHasKnight(result);
+    });
+  }, [currentUser?.addr]);
+
   const knightInfo = {
     wins: 0,
     attack: 0,
@@ -38,7 +54,7 @@ export default function GamePage() {
   return (
     <>
       <Header />
-      {isKnight && !isResultScreen ? (
+      {hasKnight && !isResultScreen ? (
         <HasKnight {...knightInfo} />
       ) : (
         <NoKnight {...noKnightProps} />

@@ -4,7 +4,6 @@ import Button from "@/components/Button";
 import Image from "@/components/Image";
 import { useState, useEffect } from "react";
 import * as fcl from "@onflow/fcl";
-import "../config.js";
 
 export default function LoginPage() {
   const [currentUser, setCurrentUser] = useState({

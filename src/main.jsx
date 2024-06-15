@@ -1,12 +1,13 @@
+import CreatePage from "@/components/CreatePage.jsx";
+import DocsPage from "@/components/DocsPage.jsx";
+import GamePage from "@/components/GamePage.jsx";
+import LoginPage from "@/components/LoginPage";
+import PlayPage from "@/components/PlayPage.jsx";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import LoginPage from "@/components/LoginPage";
-import "./global.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import GamePage from "@/components/GamePage.jsx";
-import DocsPage from "@/components/DocsPage.jsx";
-import PlayPage from "@/components/PlayPage.jsx";
-import CreatePage from "@/components/CreatePage.jsx";
+import "./config.js";
+import "./global.css";
 const router = createBrowserRouter([
   {
     path: "/",
