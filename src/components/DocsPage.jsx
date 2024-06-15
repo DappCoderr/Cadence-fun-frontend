@@ -74,6 +74,7 @@ export default function DocsPage() {
   const [showSolution, setShowSolution] = useState(false);
   const [runConfetti, setRunConfetti] = useState(false);
   const [showModel, setShowModel] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
   const handleLessonIncrement = (increment = 1) => {
     if (selectedLesson < data[selectedModule].length - 1 && increment > 0) {
       setSelectedLesson(selectedLesson + increment);
@@ -177,20 +178,34 @@ export default function DocsPage() {
       <div className="flex  px-6 py-4 gap-3 flex-1 max-h-[calc(100%-90px)] w-full">
         {/* left meny */}
         <div className=" max-w-[20%] flex gap-3 flex-col h-full w-full">
-          <select
+          <div
+            onClick={() => setShowDropdown(!showDropdown)}
             value={selectedModule}
-            className="outline-none flex uppercase text-base font-medium items-center justify-center border-2 flex-1 max-h-8 bg-accent w-full rounded-[10px] border-black  shadow2"
+            className="outline-none relative flex uppercase text-base font-medium items-center justify-center border-2 flex-1 max-h-8 bg-accent w-full rounded-[10px] border-black  shadow2"
             onChange={(e) => {
               setSelectedModule(e.target.value);
               setSelectedLesson(0);
             }}
           >
-            {Object.keys(data).map((module, index) => (
-              <option className="text-center w-full" key={index} value={module}>
-                {module}
-              </option>
-            ))}
-          </select>
+            {selectedModule}
+            <div
+              className={`${showDropdown ? "" : "hidden"} absolute top-8 bg-white w-full  border-black  border-2 shadow-2xl rounded-[10px] p-1`}
+            >
+              {Object.keys(data).map((module, index) => (
+                <div
+                  onClick={() => {
+                    setSelectedModule(module);
+                    setSelectedLesson(0);
+                    setShowDropdown(false);
+                  }}
+                  className="text-center w-full text-opacity-40 text-black hover:text-opacity-100 p-1 rounded-lg hover:bg-accent hover:text-black cursor-pointer"
+                  key={index}
+                >
+                  {module}
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="overflow-y-auto border-2 flex-1 w-full rounded-[10px] border-black bg-bg2 shadow2 px-2 py-3 gap-3 flex flex-col items-center">
             {data[selectedModule].map((lesson, index) => (
               <button
