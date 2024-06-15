@@ -29,15 +29,17 @@ export default function Header() {
         <Logo />
         {/* wallet address */}
         <div className="flex items-center gap-4 h-6">
-          <Link className="tiny5 text-red" to={isDocs ? "/game" : "/docs"}>
-            {isDocs ? "Lets Play" : "Lets Study"}!
-          </Link>
+          <h4 className="h-[10px]">
+            <Link className=" text-red" to={isDocs ? "/game" : "/docs"}>
+              {isDocs ? "Lets Play" : "Lets Study"}!
+            </Link>
+          </h4>
           {address ? (
             <>
               <Button shadow="small" className="px-2 h-full rounded-lg">
                 <>
                   <Image className="h-[14px]" src={"iconWallet.png"} />
-                  <p className=" uppercase">
+                  <p className="h-[12px] uppercase">
                     {address.substring(0, 7)}...
                     {address.substring(address.length - 5)}
                   </p>
