@@ -189,7 +189,7 @@ export default function DocsPage() {
           >
             {selectedModule}
             <div
-              className={`${showDropdown ? "" : "hidden"} absolute top-8 bg-white w-full  border-black  border-2 shadow-2xl rounded-[10px] p-1`}
+              className={`${showDropdown ? "" : "hidden"} absolute top-8 bg-white w-[105%]  border-black  border-2 shadow-2xl rounded-[10px] p-1`}
             >
               {Object.keys(data).map((module, index) => (
                 <div
