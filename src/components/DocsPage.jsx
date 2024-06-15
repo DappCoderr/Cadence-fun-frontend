@@ -276,6 +276,9 @@ const Markdown = ({ children, path }) => {
     <>
       <ReactMarkdown
         components={{
+          a({ node, ...props }) {
+            return <a className="text-red font-semibold" {...props} />;
+          },
           img({ src, ...props }) {
             return (
               <img
