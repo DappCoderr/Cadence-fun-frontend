@@ -28,12 +28,21 @@ export default function Header() {
       <div className="h-10 flex-shrink-0 relative  max-h-10 border-b-2 z-10  bg-bg border-black  flex flex-row justify-between items-center px-6 w-screen">
         <Logo />
         {/* wallet address */}
-        <div className="flex items-center gap-4 h-6">
+        <div className="flex items-center gap-2 h-6">
           <h4 className="h-[10px]">
             <Link className=" text-red" to={isDocs ? "/game" : "/docs"}>
               {isDocs ? "Lets Play" : "Lets Study"}!
             </Link>
           </h4>
+          <Button
+            onClick={() => {
+              window.open("https://twitter.com", "_blank");
+            }}
+            shadow="small"
+            className="w-6 h-full rounded-lg"
+          >
+            <Image className="h-[14px]" src={"twitter.png"} />
+          </Button>
           {address ? (
             <>
               <Button shadow="small" className="px-2 h-full rounded-lg">
