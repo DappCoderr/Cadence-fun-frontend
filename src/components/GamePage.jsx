@@ -4,12 +4,12 @@ import Knight from "@/components/Knight";
 import ShadowText from "@/components/ShadowText";
 import * as fcl from "@onflow/fcl";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { checkKnightCollection } from "../flow/checkCollection.script";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
 export default function GamePage() {
-  const [hasKnight, setHasKnight] = useState(true);
+  const [hasKnight, setHasKnight] = useState(false);
   const [currentUser, setCurrentUser] = useState({
     loggedIn: false,
     addr: undefined,
@@ -19,7 +19,7 @@ export default function GamePage() {
 
   useEffect(() => {
     checkKnightCollection(currentUser?.addr).then((result) => {
-      setHasKnight(true);
+      setHasKnight(result);
     });
   }, [currentUser?.addr]);
 
