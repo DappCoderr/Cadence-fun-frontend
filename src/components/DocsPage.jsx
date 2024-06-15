@@ -73,13 +73,29 @@ export default function DocsPage() {
   const handleLessonIncrement = (increment = 1) => {
     if (selectedLesson < data[selectedModule].length - 1 && increment > 0) {
       setSelectedLesson(selectedLesson + increment);
-    }
-    if (selectedLesson > 0 && increment < 0) {
+    } else if (
+      selectedLesson == data[selectedModule].length - 1 &&
+      increment > 0
+    ) {
+      setSelectedModule(
+        Object.keys(data)[Object.keys(data).indexOf(selectedModule) + 1],
+      );
+      setSelectedLesson(0);
+    } else if (selectedLesson > 0 && increment < 0) {
       setSelectedLesson(selectedLesson + increment);
+    } else if (selectedLesson == 0 && increment < 0) {
+      const newModule =
+        Object.keys(data)[Object.keys(data).indexOf(selectedModule) - 1];
+      setSelectedModule(newModule);
+      console.log("newModule", newModule);
+      setSelectedLesson(data[newModule].length - 1);
     }
   };
-  const disableNext = selectedLesson === data[selectedModule].length - 1;
-  const disablePrev = selectedLesson === 0;
+  const disableNext =
+    selectedLesson == data[selectedModule].length - 1 &&
+    Object.keys(data).indexOf(selectedModule) == Object.keys(data).length - 1;
+  const disablePrev =
+    selectedLesson == 0 && Object.keys(data).indexOf(selectedModule) == 0;
   const basePath = `/modules/${selectedModule}/`;
   useEffect(() => {
     fetch(basePath + `${data[selectedModule][selectedLesson]}.md`)
