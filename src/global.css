@@ -288,7 +288,7 @@ button {
         font-size: 14px;
         font-weight: 500;
         line-height: 150%;
-        font-family: Inter;
+        font-family: Inter, "sans-serif";
     }
 
     pre {
