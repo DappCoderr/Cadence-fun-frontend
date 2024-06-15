@@ -1,14 +1,13 @@
+import Button from "@/components/Button";
+import Image from "@/components/Image";
+import Knight from "@/components/Knight";
+import ShadowText from "@/components/ShadowText";
+import * as fcl from "@onflow/fcl";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { checkKnightCollection } from "../flow/checkCollection.script";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
-import Image from "@/components/Image";
-import Button from "@/components/Button";
-import ShadowText from "@/components/ShadowText";
-import Knight from "@/components/Knight";
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useState } from "react";
-import { checkKnightCollection } from "../flow/checkCollection.script";
-import * as fcl from "@onflow/fcl";
 export default function GamePage() {
   const [hasKnight, setHasKnight] = useState(false);
   const [currentUser, setCurrentUser] = useState({
@@ -41,6 +40,7 @@ export default function GamePage() {
         message: "You lost!",
         buttonText: "Try Again",
         href: "/game",
+        isResultScreen,
       };
     } else {
       noKnightProps = {
@@ -48,6 +48,7 @@ export default function GamePage() {
         buttonText: "Play Again",
         href: "/game",
         img: { src: "win.gif" },
+        isResultScreen,
       };
     }
   }
@@ -94,7 +95,7 @@ const HasKnight = ({
   );
 };
 
-const NoKnight = ({ message, buttonText, href, img }) => {
+const NoKnight = ({ message, buttonText, href, img, isResultScreen }) => {
   return (
     <GameBackground>
       <div className="flex flex-col items-center gap-5">
@@ -113,19 +114,26 @@ const NoKnight = ({ message, buttonText, href, img }) => {
             className="border-t-[1.5px] h-6 border-black border-dotted w-[120px] "
           />
         </div>
-        <h3 className="text-center max-w-[261px]">
+        <h3
+          className={`text-center max-w-[261px] ${isResultScreen ? "text-[28px]]" : ""} `}
+        >
           {message ||
             "No Knight found in your wallet. Create one to start playing!"}
         </h3>
       </div>
-      <Image src={"iconLongSword.png"} className={"animate-bounce h-[36px]"} />
+      <Image src={"iconLongSword.png"} className={`animate-bounce h-[36px]`} />
       <Button
         shadow="large"
         href={href || "/create"}
         className={`flex-col px-6 py-4`}
       >
-        <Image src={"angels/angelSlashBig.png"} className={" h-[71px] mr-1"} />
-        <span>{buttonText || "Create"}</span>
+        <Image
+          src={"angels/angelSlashBig.png"}
+          className={` ${isResultScreen ? "h-[40px]" : "h-[71px]"} mr-1`}
+        />
+        <span className={isResultScreen ? "text-sm" : ""}>
+          {buttonText || "Create"}
+        </span>
       </Button>
     </GameBackground>
   );
