@@ -178,7 +178,7 @@ export default function DocsPage() {
         {/* left meny */}
         <div className=" max-w-[20%] flex gap-3 flex-col h-full w-full">
           <select
-            defaultValue={selectedModule}
+            value={selectedModule}
             className="outline-none flex uppercase text-base font-medium items-center justify-center border-2 flex-1 max-h-8 bg-accent w-full rounded-[10px] border-black  shadow2"
             onChange={(e) => {
               setSelectedModule(e.target.value);
