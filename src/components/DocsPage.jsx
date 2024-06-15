@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Confetti from "react-confetti";
 import Header from "./Header";
 import Image from "@/components/Image";
 import Button from "@/components/Button";
@@ -8,6 +9,7 @@ import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";
 import prism from "react-syntax-highlighter/dist/esm/styles/prism/prism";
 import remarkGfm from "remark-gfm";
+import { Suspense } from "react";
 SyntaxHighlighter.registerLanguage("jsx", jsx);
 
 export default function DocsPage() {
@@ -70,6 +72,8 @@ export default function DocsPage() {
   const [test, setTest] = useState(null);
   const [solution, setSolution] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
+  const [runConfetti, setRunConfetti] = useState(false);
+  const [showModel, setShowModel] = useState(false);
   const handleLessonIncrement = (increment = 1) => {
     if (selectedLesson < data[selectedModule].length - 1 && increment > 0) {
       setSelectedLesson(selectedLesson + increment);
@@ -81,6 +85,8 @@ export default function DocsPage() {
         Object.keys(data)[Object.keys(data).indexOf(selectedModule) + 1],
       );
       setSelectedLesson(0);
+      setRunConfetti(true);
+      setShowModel(true);
     } else if (selectedLesson > 0 && increment < 0) {
       setSelectedLesson(selectedLesson + increment);
     } else if (selectedLesson == 0 && increment < 0) {
@@ -91,6 +97,18 @@ export default function DocsPage() {
       setSelectedLesson(data[newModule].length - 1);
     }
   };
+
+  // useEffect(() => {
+  //   let timer;
+  //   if (runConfetti) {
+  //     timer = setTimeout(() => {
+  //       setRunConfetti(false);
+  //     }, 5000);
+  //   }
+  //   return () => {
+  //     clearTimeout(timer);
+  //   };
+  // }, [runConfetti]);
   const disableNext =
     selectedLesson == data[selectedModule].length - 1 &&
     Object.keys(data).indexOf(selectedModule) == Object.keys(data).length - 1;
@@ -127,7 +145,34 @@ export default function DocsPage() {
       });
   }, [selectedLesson, selectedModule]);
   return (
-    <div className="h-screen flex flex-col w-screen">
+    <div className="h-screen flex flex-col w-screen relative">
+      <Confetti
+        recycle={runConfetti}
+        run={selectedModule != "Module 1"}
+        numberOfPieces={200}
+      />
+      {/* modal */}
+      {showModel && (
+        <div
+          onClick={() => {
+            setShowModel(false);
+            setRunConfetti(false);
+          }}
+          className="absolute  top-0 left-0 w-screen h-screen bg-black bg-opacity-50 z-40 flex items-center justify-center"
+        >
+          <div className=" min-h-48 min-w-52 p-4 bg-white shadow-2xl flex items-center justify-center flex-col gap-3 text-center rounded-[10px] z-50 border-2 border-black">
+            <Image src="win.gif" className="h-20 " />
+            <div className="flex flex-col items-center gap-1">
+              <h4 className="w-2/3 capitalize leading-5">
+                congratulations! You completed the module
+              </h4>
+              <p className="text-opacity-50 text-black text-xs">
+                (Click anywhere to close)
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
       <Header />
       <div className="flex  px-6 py-4 gap-3 flex-1 max-h-[calc(100%-90px)] w-full">
         {/* left meny */}
