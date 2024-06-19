@@ -1,6 +1,5 @@
 ---
 title: Lesson 5 - Tracking Victories
-sidebar_position: 5
 ---
 
 Remember our winCount variable we created lesson 2. We will use that variable in this lesson.

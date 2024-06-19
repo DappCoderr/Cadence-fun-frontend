@@ -1,6 +1,5 @@
 ---
 title: Lesson 1 - Overview
-sidebar_position: 1
 ---
 
 Welcome to the final stage of your NFT game development journey!

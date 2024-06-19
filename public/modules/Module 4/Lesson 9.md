@@ -1,6 +1,5 @@
 ---
 title: Lesson 9 - Creating Contract Storage
-sidebar_position: 9
 ---
 
 ### Introducing Capabilities

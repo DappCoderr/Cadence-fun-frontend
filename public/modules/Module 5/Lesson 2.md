@@ -1,6 +1,5 @@
 ---
 title: Lesson 2 - Refactoring NFT
-sidebar_position: 2
 ---
 
 In this lesson, we'll refactor our NFT. We'll define unique identifiers and add more variables. Previously, our NFT had static data; now, we'll make it dynamic.

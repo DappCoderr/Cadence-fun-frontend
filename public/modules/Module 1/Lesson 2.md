@@ -1,6 +1,5 @@
 ---
 title: Lesson 2 - Cadence Overview
-sidebar_position: 2
 ---
 
 Welcome! Before we dive into Cadence and the Flow Playground, let's make sure you are familiar with blockchain basics like blocks, smart contracts, and transactions, etc. If you're new to these, take a moment to brush up on [these](https://developers.flow.com/build/basics/blocks) fundamentals for a smoother ride.

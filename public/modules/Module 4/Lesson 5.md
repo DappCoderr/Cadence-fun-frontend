@@ -1,6 +1,5 @@
 ---
 title: Lesson 5 - Adding Standard Events
-sidebar_position: 5
 ---
 
 Are you getting some error? Don't worry we will resolve them now.

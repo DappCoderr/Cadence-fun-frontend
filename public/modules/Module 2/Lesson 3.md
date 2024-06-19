@@ -1,6 +1,5 @@
 ---
 title: Lesson 3 - State Variables
-sidebar_position: 3
 ---
 
 In cadence variables are like bits of information that stored on the blockchain, much like writing data to a database. In Cadence, we use two main keywords:

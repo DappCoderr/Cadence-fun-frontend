@@ -1,6 +1,5 @@
 ---
 title: Lesson 9 - Function Declaration
-sidebar_position: 9
 ---
 
 Declaring a function involves specifying its visibility, function name, parameters, and return type (if any).

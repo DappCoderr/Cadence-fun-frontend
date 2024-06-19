@@ -1,6 +1,5 @@
 ---
 title: Lesson 1 - Welcome
-sidebar_position: 1
 ---
 
 ## Welcome to Cadence Fun Developers!

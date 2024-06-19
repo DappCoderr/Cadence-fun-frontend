@@ -1,6 +1,5 @@
 ---
 title: Lesson 5 - Structs
-sidebar_position: 5
 ---
 
 A **_struct_** (short for structure) is like a container that holds different types of information under one label. Structs help organize related pieces of data together.

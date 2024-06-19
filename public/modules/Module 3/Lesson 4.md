@@ -1,6 +1,5 @@
 ---
 title: Lesson 4 - destory()
-sidebar_position: 4
 ---
 
 In last lesson you have seen the nested resource, but have you notice we haven't discuss about destroy function we have define. Right?

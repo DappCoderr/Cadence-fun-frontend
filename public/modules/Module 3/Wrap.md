@@ -1,6 +1,5 @@
 ---
 title: That’s a wrap
-sidebar_position: 11
 ---
 
 ```jsx

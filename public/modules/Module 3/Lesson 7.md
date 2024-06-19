@@ -1,6 +1,5 @@
 ---
 title: Lesson 7 - Counting Your Treasures!
-sidebar_position: 7
 ---
 
 Keeping track of your NFTs can get tricky. That’s where the `getIDs` function comes in, allowing you to count all the unique NFTs in your collection.

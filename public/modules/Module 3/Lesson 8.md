@@ -1,6 +1,5 @@
 ---
 title: Lesson 8 - The Interfaces
-sidebar_position: 8
 ---
 
 Congrats for making this far. Wooh!!

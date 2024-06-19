@@ -1,6 +1,5 @@
 ---
 title: Lesson 10 - Organize Your Path
-sidebar_position: 10
 ---
 
 ```cadence

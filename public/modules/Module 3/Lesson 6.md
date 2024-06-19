@@ -1,6 +1,5 @@
 ---
 title: Lesson 6 - Deposit Function
-sidebar_position: 6
 ---
 
 Just like you can withdraw an NFT, you can also add new ones with the deposit function, which acts as a special entrance to your collection.

@@ -1,6 +1,5 @@
 ---
 title: Lesson 8 - Pre & Post Condition
-sidebar_position: 8
 ---
 
 Introducing pre and post condition in contract. If you have some logic which you want to check before going into function the you can add a validation.

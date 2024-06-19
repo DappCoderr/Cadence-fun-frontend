@@ -1,6 +1,5 @@
 ---
 title: Lesson 3 - Nested Resources
-sidebar_position: 3
 ---
 
 Although those collections you created might be empty now, that's fine. Let's learn how to add NFTs to it using nested resources.
