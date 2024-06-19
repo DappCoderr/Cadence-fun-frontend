@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     const handleResize = () => {
       const isMobile = window.innerWidth <= 768;
-      console.log("isMobile", isMobile, window.innerWidth);
+      // console.log("isMobile", isMobile, window.innerWidth);
       if (isMobile) {
         setIsMobile(true);
       } else {

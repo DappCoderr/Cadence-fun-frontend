@@ -3,6 +3,7 @@ import GameBackground from "./GameBackground";
 import Header from "./Header";
 import Button from "@/components/Button";
 import { useNavigate } from "react-router-dom";
+import { createKnight } from "../flow/createKnight.tx";
 
 export default function CreatePage() {
   const data = ["rock", "fire", "sun", "moon"];
@@ -11,9 +12,14 @@ export default function CreatePage() {
   const [name, setName] = useState("");
   const [type, setType] = useState(0);
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(name, type);
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    if (!name) {
+      alert("Please enter a name");
+      return;
+    }
+    const res = await createKnight(name, type);
+    console.log("knight created?", res);
     navigate("/game");
   };
   return (

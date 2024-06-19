@@ -56,6 +56,23 @@ To get the date, you can use block.timestamp, which is a global variable represe
 
 ### Solution !!
 
+```jsx
+access(all) contract HellWorld {
+
+	access(all) resource Country{
+		access(all) var id: UInt64
+		// adding a new variable
+		access(all) var name: String
+
+		// initializing new variable value
+		init(_name: String){
+			self.id = self.uuid
+			self.name = _name
+		}
+	}
+}
+```
+
 ![Alt text](image-4.png)
 
 ---

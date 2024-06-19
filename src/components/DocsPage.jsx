@@ -254,11 +254,11 @@ export default function DocsPage() {
         </div>
         {/* code part */}
         {test && (
-          <div className="max-w-[30%] relative border-2 rounded-[10px] border-black  h-full bg-secondary w-full shadow2 p-3">
+          <div className="max-w-[30%] relative border-2 rounded-[10px] border-black  h-full bg-secondary overflow-auto w-full shadow2 p-3">
             <h2 className="mb-4 mt-2">
               {solution && showSolution ? "Solution" : "Put it to the test"}
             </h2>
-            <Markdown path={basePath}>
+            <Markdown path={basePath} isSolution={solution}>
               {solution && showSolution ? solution : test}
             </Markdown>
             {solution && (
@@ -283,7 +283,7 @@ export default function DocsPage() {
   );
 }
 
-const Markdown = ({ children, path }) => {
+const Markdown = ({ children, path, isSolution }) => {
   if (!children) {
     return <></>;
   }
@@ -316,13 +316,13 @@ const Markdown = ({ children, path }) => {
                 {String(children).replace(/\n$/, "")}
               </SyntaxHighlighter>
             ) : (
-              <code className={className} {...props}>
+              <code className={className + " bg-red"} {...props}>
                 {children}
               </code>
             );
           },
         }}
-        className={"markdown"}
+        className={"markdown " + (isSolution ? "solution" : "")}
         remarkPlugins={[remarkGfm]}
       >
         {children}

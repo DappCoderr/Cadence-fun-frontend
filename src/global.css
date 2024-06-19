@@ -16,6 +16,7 @@
     --brown: #8d7761;
     --light-brown: #d8cdc6;
     --dark: #363737;
+    --bg-light-orange: #ffe2cc;
 
     --shadow-text: 3px 4px 0px var(--black);
     --shadow1: 1px 2px 0px var(--black);
@@ -312,6 +313,17 @@ button {
             font-size: 14px !important;
             font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo,
                 Consolas, "Liberation Mono", monospace;
+        }
+    }
+}
+
+.solution {
+    pre {
+        border: none;
+        background: var(--bg-light-orange) !important;
+        div,
+        span {
+            background: var(--bg-light-orange) !important;
         }
     }
 }
