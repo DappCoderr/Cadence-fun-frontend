@@ -7,10 +7,11 @@ import { useLocation } from "react-router-dom";
 import useKnightInfo from "../hooks/useKnightInfo";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
+import LoadingPage from "./LoadingPage";
 // import { useSearchParams } from "react-router-dom";
 
 export default function GamePage() {
-  const { hasKnight, knightInfo } = useKnightInfo();
+  const { hasKnight, knightInfo, loadingKnight } = useKnightInfo();
   const { state } = useLocation();
   // const [params] = useSearchParams();
   // console.log("params", params.get("status"));
@@ -37,9 +38,17 @@ export default function GamePage() {
       };
     }
   }
+  if (loadingKnight) {
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
+  }
   return (
     <>
       <Header />
+      {loadingKnight}
       {hasKnight && !isResultScreen ? (
         <HasKnight {...knightInfo} />
       ) : (

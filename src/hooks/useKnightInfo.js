@@ -6,9 +6,10 @@ import { getId } from "../flow/getID.script";
 
 export default function useKnightInfo() {
   const [currentUser] = useCurrentUser();
+  const [loadingKnight, setLoadingKnight] = useState(true);
   const [hasKnight, setHasKnight] = useState(false);
   const [knightInfo, setKnightInfo] = useState({});
-  const [id, setId] = useState(null);
+  const [knightId, setKnightId] = useState(null);
   const address = currentUser?.addr;
   useEffect(() => {
     checkKnightCollection(address).then((result) => {
@@ -17,10 +18,14 @@ export default function useKnightInfo() {
     });
   }, [address]);
 
-  const handleBorrowKnight = async (idd = id) => {
-    if (!idd) return;
+  const handleBorrowKnight = async (idd = knightId) => {
+    if (!idd) {
+      setLoadingKnight(false);
+      return;
+    }
     return borrowKnight(address, idd).then((result) => {
       // console.log("borrowKnight result", result);
+      setLoadingKnight(false);
       if (!result) return;
       setKnightInfo({
         wins: result.winCount,
@@ -32,14 +37,15 @@ export default function useKnightInfo() {
   };
   useEffect(() => {
     if (hasKnight) {
+      setLoadingKnight(true);
       console.log("You have a knight!");
-      let idd = id || null;
+      let idd = knightId || null;
       if (!idd) {
         // get id
         getId(address).then((res) => {
           console.log("id", res);
           if (Array.isArray(res) && res.length > 0) idd = res[0];
-          setId(idd);
+          setKnightId(idd);
           handleBorrowKnight(idd);
         });
         return;
@@ -51,5 +57,7 @@ export default function useKnightInfo() {
     knightInfo,
     hasKnight,
     currentUser,
+    knightId,
+    loadingKnight,
   };
 }
