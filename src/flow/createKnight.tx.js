@@ -21,7 +21,7 @@ let collectionRef: &{NonFungibleToken.CollectionPublic}
   }
 }`;
 
-export async function createKnight(name, type) {
+export async function createKnight(name, type, setTransacting) {
   try {
     const response = await fcl.mutate({
       cadence: CREATE,
@@ -31,6 +31,9 @@ export async function createKnight(name, type) {
       authorizations: [fcl.authz],
       limit: 999,
     });
+    // waiting for the transaction to be sealed
+    setTransacting && setTransacting(true);
+    await fcl.tx(response).onceSealed();
     console.log("response", response);
     return response;
   } catch (error) {

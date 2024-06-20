@@ -10,6 +10,7 @@ export default function CreatePage() {
   const data = ["rock", "fire", "sun", "moon"];
   const [name, setName] = useState("");
   const [type, setType] = useState(0);
+  const [isTransacting, setIsTransacting] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,8 +18,8 @@ export default function CreatePage() {
       alert("Please enter a name");
       return;
     }
-    console.log("name", name, "type", type);
-    const res = await createKnight(name, String(type));
+    // console.log("name", name, "type", type);
+    const res = await createKnight(name, String(type), setIsTransacting);
     console.log("knight created?", res);
     navigate("/game");
   };
@@ -55,13 +56,19 @@ export default function CreatePage() {
               </option>
             ))}
           </select>
-          <Button
-            type="submit"
-            className={"text-base w-full h-8 bg-yellow mt-4"}
-            // onClick={handleSubmit}
-          >
-            Create Character
-          </Button>
+          {isTransacting ? (
+            <h3 className={`text-center text-[28px]] `}>
+              Sir Knight, pls wait for transaction to complete...
+            </h3>
+          ) : (
+            <Button
+              type="submit"
+              className={"text-base w-full h-8 bg-yellow mt-4"}
+              // onClick={handleSubmit}
+            >
+              Create Character
+            </Button>
+          )}
         </form>
       </GameBackground>
     </>

@@ -32,7 +32,7 @@ export async function knightAttack(
     });
     console.log("response", response);
     // from id, wait for the transaction to be sealed
-    setTransacting(true);
+    setTransacting && setTransacting(true);
     const res = await fcl.tx(response).onceSealed();
     console.log("battle sealed?", res);
     return res;

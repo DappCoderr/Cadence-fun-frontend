@@ -8,17 +8,20 @@ import useKnightInfo from "../hooks/useKnightInfo";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
 import LoadingPage from "./LoadingPage";
+import * as fcl from "@onflow/fcl";
 // import { useSearchParams } from "react-router-dom";
 
 export default function GamePage() {
   const { state } = useLocation();
   const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
-  const { hasKnight, knightInfo, loadingKnight } = useKnightInfo(
+  const { hasKnight, knightInfo, loadingKnight, currentUser } = useKnightInfo(
     undefined,
     undefined,
     [lost],
   );
   // const [params] = useSearchParams();
+  const isConnected = currentUser?.addr;
+  console.log("currentUser", currentUser, isConnected);
   // console.log("params", params.get("status"));
   console.log("lost", lost);
   const isResultScreen = typeof lost === "number";
@@ -56,7 +59,7 @@ export default function GamePage() {
       {hasKnight && !isResultScreen ? (
         <HasKnight {...knightInfo} />
       ) : (
-        <NoKnight {...noKnightProps} />
+        <NoKnight {...noKnightProps} isConnected={isConnected} />
       )}
     </>
   );
@@ -95,7 +98,15 @@ const HasKnight = ({ name = "Rico", character = "wizard", ...props }) => {
   );
 };
 
-const NoKnight = ({ message, buttonText, href, img, isResultScreen }) => {
+const NoKnight = ({
+  message,
+  buttonText,
+  href,
+  img,
+  isResultScreen,
+  isConnected,
+}) => {
+  console.log("isConnected", isConnected);
   return (
     <GameBackground>
       <div className="flex flex-col items-center gap-5">
@@ -122,19 +133,26 @@ const NoKnight = ({ message, buttonText, href, img, isResultScreen }) => {
         </h3>
       </div>
       <Image src={"iconLongSword.png"} className={`animate-bounce h-[36px]`} />
-      <Button
-        shadow="large"
-        href={href || "/create"}
-        className={`flex-col px-6 py-4`}
-      >
-        <Image
-          src={"angels/angelSlashBig.png"}
-          className={` ${isResultScreen ? "h-[40px]" : "h-[71px]"} mr-1`}
-        />
-        <span className={isResultScreen ? "text-sm" : ""}>
-          {buttonText || "Create"}
-        </span>
-      </Button>
+      {!isConnected ? (
+        <Button href={"/"} shadow={"large"} className="p-4 h-10  flex-col">
+          {/* <Image src={"angels/fallenAngel.png"} className="h-10" /> */}
+          <span className="h-5">Connect Wallet</span>
+        </Button>
+      ) : (
+        <Button
+          shadow="large"
+          href={href || "/create"}
+          className={`flex-col px-6 py-4`}
+        >
+          <Image
+            src={"angels/angelSlashBig.png"}
+            className={` ${isResultScreen ? "h-[40px]" : "h-[71px]"} mr-1`}
+          />
+          <span className={isResultScreen ? "text-sm" : ""}>
+            {buttonText || "Create"}
+          </span>
+        </Button>
+      )}
     </GameBackground>
   );
 };
