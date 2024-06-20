@@ -7,8 +7,9 @@ import ShadowText from "@/components/ShadowText";
 import Knight from "@/components/Knight";
 import { useNavigate } from "react-router-dom";
 import useKnightInfo from "../hooks/useKnightInfo";
+import LoadingPage from "./LoadingPage";
 export default function PlayPage() {
-  const { knightInfo: knight1Info } = useKnightInfo();
+  const { knightInfo: knight1Info, loadingKnight } = useKnightInfo();
   const knight2Info = {
     name: "Andrew",
     leftImg: "leftBorder2.png",
@@ -40,6 +41,13 @@ export default function PlayPage() {
     return lost;
     // send to win or lose screen
   };
+  if (loadingKnight) {
+    return (
+      <>
+        <LoadingPage />
+      </>
+    );
+  }
   return (
     <>
       <Header />

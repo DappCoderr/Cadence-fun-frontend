@@ -3,14 +3,18 @@ import useCurrentUser from "./useCurrentUser";
 import { checkKnightCollection } from "../flow/checkCollection.script";
 import { borrowKnight } from "../flow/borrowKnight.script";
 import { getId } from "../flow/getID.script";
+import { colorsTheme } from "../constants";
 
-export default function useKnightInfo() {
+export default function useKnightInfo(isAdmin = false) {
   const [currentUser] = useCurrentUser();
   const [loadingKnight, setLoadingKnight] = useState(true);
   const [hasKnight, setHasKnight] = useState(false);
   const [knightInfo, setKnightInfo] = useState({});
   const [knightId, setKnightId] = useState(null);
   const address = currentUser?.addr;
+  const randomFromMinMan = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  };
   useEffect(() => {
     checkKnightCollection(address).then((result) => {
       console.log("result", result);
@@ -24,14 +28,17 @@ export default function useKnightInfo() {
       return;
     }
     return borrowKnight(address, idd).then((result) => {
-      // console.log("borrowKnight result", result);
+      console.log("borrowKnight result", result);
       setLoadingKnight(false);
       if (!result) return;
       setKnightInfo({
         wins: result.winCount,
         attack: result.xp,
         name: result.name,
-        type: result.type,
+        type:
+          result.type?.length > 1
+            ? colorsTheme.indexOf(result.type)
+            : result.type,
       });
     });
   };
@@ -44,7 +51,9 @@ export default function useKnightInfo() {
         // get id
         getId(address).then((res) => {
           console.log("id", res);
-          if (Array.isArray(res) && res.length > 0) idd = res[0];
+          if (!(Array.isArray(res) && res.length > 0)) return;
+          if (isAdmin) idd = res[randomFromMinMan(0, res.length - 1)];
+          else idd = res[0]; // get the first id
           setKnightId(idd);
           handleBorrowKnight(idd);
         });
