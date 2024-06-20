@@ -7,10 +7,13 @@ import { useLocation } from "react-router-dom";
 import useKnightInfo from "../hooks/useKnightInfo";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
+// import { useSearchParams } from "react-router-dom";
 
 export default function GamePage() {
   const { hasKnight, knightInfo } = useKnightInfo();
   const { state } = useLocation();
+  // const [params] = useSearchParams();
+  // console.log("params", params.get("status"));
   const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
   console.log("lost", lost);
   const isResultScreen = typeof lost === "number";

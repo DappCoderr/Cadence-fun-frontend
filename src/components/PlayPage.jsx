@@ -21,7 +21,7 @@ export default function PlayPage() {
   const navigate = useNavigate();
   const [isAttacking, setIsAttacking] = useState(false);
   const [lost, setLost] = useState(-1);
-  console.log("lost", lost);
+  // console.log("lost", lost);
   const handleAttack = async () => {
     setIsAttacking(true);
     let lost = -1;
@@ -36,11 +36,8 @@ export default function PlayPage() {
     }
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setLost(-1);
-    navigate("/game", {
-      state: {
-        lost: lost,
-      },
-    });
+    console.log("sending to game page");
+    return lost;
     // send to win or lose screen
   };
   return (
@@ -82,9 +79,13 @@ export default function PlayPage() {
         {/* buttons */}
         <Button
           shadow="large"
-          href="/play"
           className={` px-4 py-2 bg-accent rounded-[20px] `}
-          onClick={handleAttack}
+          onClick={() =>
+            handleAttack().then((lost) => {
+              // navigate("/game?status=" + lost);
+              navigate("/game", { state: { lost } });
+            })
+          }
         >
           <Image src={"angels/princeSlash.png"} className={" h-[28px] mr-1"} />
           <span>Attack</span>
