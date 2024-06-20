@@ -2,50 +2,14 @@ import Button from "@/components/Button";
 import Image from "@/components/Image";
 import Knight from "@/components/Knight";
 import ShadowText from "@/components/ShadowText";
-import * as fcl from "@onflow/fcl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { checkKnightCollection } from "../flow/checkCollection.script";
+import useKnightInfo from "../hooks/useKnightInfo";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
-import { borrowKnight } from "../flow/borrowKnight.script";
+
 export default function GamePage() {
-  const [hasKnight, setHasKnight] = useState(false);
-  const [knightInfo, setKnightInfo] = useState({
-    wins: 0,
-    attack: 0,
-    name: "Rico",
-  });
-  const [currentUser, setCurrentUser] = useState({
-    loggedIn: false,
-    addr: undefined,
-  });
-
-  useEffect(() => fcl.currentUser.subscribe(setCurrentUser), []);
-
-  useEffect(() => {
-    checkKnightCollection(currentUser?.addr).then((result) => {
-      console.log("result", result);
-      setHasKnight(result);
-    });
-  }, [currentUser?.addr]);
-
-  useEffect(() => {
-    if (hasKnight) {
-      console.log("You have a knight!");
-      borrowKnight(currentUser?.addr, 194613558180905).then((result) => {
-        // console.log("borrowKnight result", result);
-        if (!result) return;
-        setKnightInfo({
-          wins: result.winCount,
-          attack: result.xp,
-          name: result.name,
-          type: result.type,
-        });
-      });
-    }
-  }, [hasKnight]);
-
+  const { hasKnight, knightInfo } = useKnightInfo();
   const { state } = useLocation();
   const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
   console.log("lost", lost);

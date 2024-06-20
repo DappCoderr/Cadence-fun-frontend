@@ -7,13 +7,12 @@ import ShadowText from "@/components/ShadowText";
 import Knight from "@/components/Knight";
 import { useNavigate } from "react-router-dom";
 export default function PlayPage() {
-  const knight1Info = {
+  const [knight1Info, setKnight1Info] = useState({
     name: "Rico",
     color: "brown",
-    character: "wizard",
     attack: 10,
-  };
-  const knight2Info = {
+  });
+  const [knight2Info, setKnight2Info] = useState({
     name: "Andrew",
     leftImg: "leftBorder2.png",
     rightImg: "rightBorder2.png",
@@ -21,7 +20,7 @@ export default function PlayPage() {
     character: "angel",
     attack: 0,
     color: "light-brown",
-  };
+  });
   const navigate = useNavigate();
   const color = (col) => (col ? `var(--${col})` : "");
   const [isAttacking, setIsAttacking] = useState(false);
