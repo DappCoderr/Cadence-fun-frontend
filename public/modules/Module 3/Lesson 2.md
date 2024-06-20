@@ -1,6 +1,5 @@
 ---
 title: Lesson 2 - Collection
-sidebar_position: 2
 ---
 
 Previously we have store our NFT in contract, now we will learn how to organizing your Knight NFT into personalized space using new concept called **_Collection_** rather than storing in the contract space.

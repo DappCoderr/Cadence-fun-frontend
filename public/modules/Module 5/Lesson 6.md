@@ -1,6 +1,5 @@
 ---
 title: Lesson 6 - enum
-sidebar_position: 6
 ---
 
 Remember our - `type` variable which needs to pass static value like - fire, water, rock, grass, electric, ice, flying, ghost, dark, steel, dragon, poison, fighting etc.

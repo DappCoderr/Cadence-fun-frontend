@@ -1,6 +1,5 @@
 ---
 title: Lesson 3 - Import
-sidebar_position: 3
 ---
 
 When you want to use external code in your project, Cadence provides the import keyword to bring pre-written code into your code, making your work faster!

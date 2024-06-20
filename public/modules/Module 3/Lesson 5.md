@@ -1,6 +1,5 @@
 ---
 title: Lesson 5 - Withdraw Function
-sidebar_position: 5
 ---
 
 Great job! Now you have your Knight NFT stored in your collection. But what if you want to take a special NFT out for a spin? Maybe you want to trade it for something else, or even sell it on a marketplace! That's where the withdraw function comes in!

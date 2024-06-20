@@ -1,6 +1,5 @@
 ---
 title: Lesson 11 - Creating Knight
-sidebar_position: 11
 ---
 
 Let's create our first Knight using the createKnight function we defined earlier.

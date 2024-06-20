@@ -1,6 +1,5 @@
 ---
 title: Lesson 7 - enum with Structs
-sidebar_position: 7
 ---
 
 In the previous lessons, we learned about structure for organizing data and enums for restricting variable values. Now, let's see how to combine these to create a super-efficient knight ️⚔️!

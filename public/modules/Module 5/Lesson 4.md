@@ -1,6 +1,5 @@
 ---
 title: Lesson 4 - Clash of the Knights
-sidebar_position: 4
 ---
 
 This lesson delves into the heart of your game – the battle logic! The function simulates a battle between two knights belonging to different users. The function determines the winner based on the knights' power and triggers a victory action for the winning knight.

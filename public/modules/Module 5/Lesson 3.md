@@ -1,6 +1,5 @@
 ---
 title: Lesson 3 - Refactoring Power!!
-sidebar_position: 3
 ---
 
 The strength of your Flow Knights is ever-evolving, but how do you determine how much their power grows? This lesson introduces Verifiable Random Functions (VRF) to ensure power increases are awarded fairly and securely.

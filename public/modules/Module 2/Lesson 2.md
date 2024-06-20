@@ -1,6 +1,5 @@
 ---
 title: Lesson 2 - Contract in Flow
-sidebar_position: 2
 ---
 
 Let's start from the very beginning:

@@ -1,6 +1,5 @@
 ---
 title: Lesson 2 - Token on Flow
-sidebar_position: 2
 ---
 
 Let's talk about tokens.

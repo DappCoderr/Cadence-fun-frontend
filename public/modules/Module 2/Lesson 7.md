@@ -1,6 +1,5 @@
 ---
 title: Lesson 7 - Dictionary
-sidebar_position: 7
 ---
 
 Dictionary is a data structure that stores key-value pairs. Each key in the dictionary maps to a specific value, allowing efficient retrieval and manipulation of data.

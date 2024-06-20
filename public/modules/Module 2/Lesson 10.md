@@ -1,6 +1,5 @@
 ---
 title: Lesson 10 - Math
-sidebar_position: 10
 ---
 
 Math in Cadence is pretty straightforward. The following operations are the same as in most programming languages:

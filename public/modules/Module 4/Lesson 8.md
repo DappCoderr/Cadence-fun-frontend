@@ -1,6 +1,5 @@
 ---
 title: Lesson 8 - Refactoring Create Knight
-sidebar_position: 8
 ---
 
 let's refactor

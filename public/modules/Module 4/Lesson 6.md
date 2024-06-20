@@ -1,6 +1,5 @@
 ---
 title: Lesson 6 - Adding Provider, Receiver, CollectionPublic
-sidebar_position: 6
 ---
 
 Building your own NFT collection? That's fantastic! But what if you could make it even more interesting for people to use? In this lesson we will learn how to add features that let people interact with your NFTs in new ways.

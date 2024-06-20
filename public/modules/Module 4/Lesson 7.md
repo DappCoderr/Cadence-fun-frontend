@@ -1,6 +1,5 @@
 ---
 title: Lesson 7 - Borrow Function
-sidebar_position: 7
 ---
 
 Imagine a world where your Flow NFT collection is like a bustling library! Users can now "borrow" your awesome NFTs with the brand new borrowNFT function. This lets them get a closer look or interact with your NFTs temporarily, just like checking out a book. Here's how it works:

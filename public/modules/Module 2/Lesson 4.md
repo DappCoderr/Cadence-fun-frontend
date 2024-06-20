@@ -1,6 +1,5 @@
 ---
 title: Lesson 4 - Resource
-sidebar_position: 4
 ---
 
 Flow allows you to create special items called resources. These are unique and valuable, like the Mona Lisa painting or a unique Viking sword. They ensure secure ownership and control on the blockchain.
