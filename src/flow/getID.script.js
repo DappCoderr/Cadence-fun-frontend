@@ -1,25 +1,24 @@
 import * as fcl from "@onflow/fcl";
 
-const GET_COLLECTION_LENGTH = `
-import NonFungibleToken from 0xNonFungibleToken
+const GET_ID = `
 import Knight from 0xCryptoKnight
 
-pub fun main(addr:Address): UInt64{
+pub fun main(addr:Address): [UInt64]{
     let account = getAuthAccount(addr)
     let collectionRef = account.getCapability<&{Knight.KnightCollectionPublic}>(Knight.PublicPath).borrow() ?? panic("Could not borrow Collection")
-    return collectionRef.getIDs().length
+    return collectionRef.getIDs()
 }`;
 
-export async function getCollectionLength() {
+export async function getId(address) {
   try {
     const response = await fcl.query({
-      cadence: GET_COLLECTION_LENGTH,
+      cadence: GET_ID,
       args: (arg, t) => [arg(address, t.Address)],
     });
     console.log("response", response);
     return response;
   } catch (error) {
-    console.error("Error get collection length:", error);
+    console.error("Error get ID:", error);
     throw error;
   }
 }

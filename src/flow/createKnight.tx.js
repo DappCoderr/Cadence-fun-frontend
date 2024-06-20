@@ -6,6 +6,7 @@ import Knight from 0xCryptoKnight
 
 transaction(name:String, type:String){
 let collectionRef: &{NonFungibleToken.CollectionPublic}
+
   prepare(signer:AuthAccount){
     if signer.borrow<&Knight.Collection>(from: Knight.StoragePath) == nil{
       signer.save(<- Knight.createEmptyCollection(), to:Knight.StoragePath)
