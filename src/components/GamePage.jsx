@@ -8,8 +8,14 @@ import { useLocation } from "react-router-dom";
 import { checkKnightCollection } from "../flow/checkCollection.script";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
+import { borrowKnight } from "../flow/borrowKnight.script";
 export default function GamePage() {
   const [hasKnight, setHasKnight] = useState(false);
+  const [knightInfo, setKnightInfo] = useState({
+    wins: 0,
+    attack: 0,
+    name: "Rico",
+  });
   const [currentUser, setCurrentUser] = useState({
     loggedIn: false,
     addr: undefined,
@@ -24,11 +30,22 @@ export default function GamePage() {
     });
   }, [currentUser?.addr]);
 
-  const knightInfo = {
-    wins: 0,
-    attack: 0,
-    name: "Rico",
-  };
+  useEffect(() => {
+    if (hasKnight) {
+      console.log("You have a knight!");
+      borrowKnight(currentUser?.addr, 194613558180905).then((result) => {
+        // console.log("borrowKnight result", result);
+        if (!result) return;
+        setKnightInfo({
+          wins: result.winCount,
+          attack: result.xp,
+          name: result.name,
+          type: result.type,
+        });
+      });
+    }
+  }, [hasKnight]);
+
   const { state } = useLocation();
   const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
   console.log("lost", lost);
@@ -65,24 +82,19 @@ export default function GamePage() {
   );
 }
 
-const HasKnight = ({
-  name = "Rico",
-  wins,
-  attack,
-  character = "wizard",
-  ...props
-}) => {
+const HasKnight = ({ name = "Rico", character = "wizard", ...props }) => {
   const [loading, setLoading] = useState(false);
   return (
     <>
       <GameBackground>
         <ShadowText
+          color={Number(props.type)}
           className="text-brown tracking-wider text-[64px]"
           size={"large"}
         >
           {name}
         </ShadowText>
-        <Knight character={character} wins={wins} attack={attack} />
+        <Knight character={character} {...props} />
         <Button
           disabled={loading}
           onClick={async () => {

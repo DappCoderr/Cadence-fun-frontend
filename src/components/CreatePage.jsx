@@ -4,11 +4,10 @@ import Header from "./Header";
 import Button from "@/components/Button";
 import { useNavigate } from "react-router-dom";
 import { createKnight } from "../flow/createKnight.tx";
+import { colorFunc, colorsType } from "../constants";
 
 export default function CreatePage() {
   const data = ["rock", "fire", "sun", "moon"];
-  const colors = ["brown", "red", "primary", "accent"];
-  const color = (col) => (col ? `var(--${col})` : "");
   const [name, setName] = useState("");
   const [type, setType] = useState(0);
   const navigate = useNavigate();
@@ -18,7 +17,8 @@ export default function CreatePage() {
       alert("Please enter a name");
       return;
     }
-    const res = await createKnight(name, type);
+    console.log("name", name, "type", type);
+    const res = await createKnight(name, String(type));
     console.log("knight created?", res);
     navigate("/game");
   };
@@ -44,7 +44,7 @@ export default function CreatePage() {
           <select
             defaultValue={type}
             className="px-3  outline-none flex uppercase text-base font-medium items-center justify-center border-2 flex-1  bg-accent w-full rounded-[10px] max-h-8 border-black  shadow2"
-            style={{ background: color(colors[type]) }}
+            style={{ background: colorFunc(colorsType[type]) }}
             onChange={(e) => {
               setType(e.target.value);
             }}

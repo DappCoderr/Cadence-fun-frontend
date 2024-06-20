@@ -1,19 +1,22 @@
 import Image from "@/components/Image";
 import KnightFrameBg from "./KnightFrameBg";
 import { useState, useEffect } from "react";
+import { colorFunc, colorsType } from "../constants";
 export default function Knight({
   className,
   wins = 5,
   attack = 10,
   character,
+  type,
   isLeft,
   rightImg,
   leftImg,
-  color,
   isAttacking,
   isLost,
   ...props
 }) {
+  const color = colorFunc(colorsType[parseInt(type)]);
+  console.log("color", color, type, colorsType[parseInt(type)]);
   const characters = {
     wizard: "wizardIdle.gif",
     angel: "angelIdle.gif",

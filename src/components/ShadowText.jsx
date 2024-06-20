@@ -1,3 +1,4 @@
+import { colorFunc, colorsType } from "../constants";
 export default function ShadowText({
   color,
   children,
@@ -12,7 +13,10 @@ export default function ShadowText({
   return (
     <p
       style={{
-        color: color,
+        color:
+          typeof color == "number"
+            ? colorFunc(colorsType[color])
+            : `var(--color-${color})`,
       }}
       className={`${sizes[size || "small"]}   uppercase font-bold max-w-[476px] leading-[80%]   ${className} `}
     >

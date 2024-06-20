@@ -24,7 +24,7 @@ export async function createKnight(name, type) {
   try {
     const response = await fcl.mutate({
       cadence: CREATE,
-      args: (arg, t) => [arg(name, t.String), arg(type, t.UInt8)],
+      args: (arg, t) => [arg(name, t.String), arg(type, t.String)],
       payer: fcl.authz,
       proposer: fcl.authz,
       authorizations: [fcl.authz],
