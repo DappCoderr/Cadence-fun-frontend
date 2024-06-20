@@ -19,6 +19,7 @@ export default function GamePage() {
 
   useEffect(() => {
     checkKnightCollection(currentUser?.addr).then((result) => {
+      console.log("result", result);
       setHasKnight(result);
     });
   }, [currentUser?.addr]);

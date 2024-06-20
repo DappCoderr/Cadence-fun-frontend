@@ -2,7 +2,7 @@ import * as fcl from "@onflow/fcl";
 
 const GET_BORROW_KNIGHT = `
 import NonFungibleToken from 0xNonFungibleToken
-import CryptoKnight from 0xCryptoKnight
+import Knight from 0xCryptoKnight
 
 pub fun main(addr:Address, id:UInt64): ResultKnight{
     let account = getAuthAccount(addr)

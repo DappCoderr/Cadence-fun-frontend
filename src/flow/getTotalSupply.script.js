@@ -1,7 +1,7 @@
 import * as fcl from "@onflow/fcl";
 
 const GET_TOTAL_SUPPLY = `
-import CryptoKnight from 0xCryptoKnight
+import Knight from 0xCryptoKnight
 
 pub fun main(): UInt64{
     return Knight.totalSupply

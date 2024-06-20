@@ -1,7 +1,7 @@
 import * as fcl from "@onflow/fcl";
 
 const FIGHT = `
-import CryptoKnight from 0xCryptoKnight
+import Knight from 0xCryptoKnight
 
 transaction(userA:Address, userAKnightId: UInt64, userB:Address, userBKnightId: UInt64){
     prepare(signer:AuthAccount){
@@ -13,7 +13,7 @@ export async function knightAttack(
   user1Address,
   user1KnightId,
   user2Address,
-  user2KnightId
+  user2KnightId,
 ) {
   try {
     const response = await fcl.mutate({

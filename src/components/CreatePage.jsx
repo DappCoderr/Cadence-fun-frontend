@@ -13,7 +13,7 @@ export default function CreatePage() {
   const [type, setType] = useState(0);
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (!name) {
       alert("Please enter a name");
       return;
@@ -58,7 +58,7 @@ export default function CreatePage() {
           <Button
             type="submit"
             className={"text-base w-full h-8 bg-yellow mt-4"}
-            onClick={handleSubmit}
+            // onClick={handleSubmit}
           >
             Create Character
           </Button>

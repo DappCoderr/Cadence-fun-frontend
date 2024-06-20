@@ -1,7 +1,7 @@
 import * as fcl from "@onflow/fcl";
 
 const GET_COLLECTION_LENGTH = `
-import {CryptoKnight as Knight} from 0xCryptoKnight
+import Knight from 0xCryptoKnight
 
 pub fun main(addr:Address): Bool{
     let account = getAuthAccount(addr)

@@ -2,7 +2,7 @@ import * as fcl from "@onflow/fcl";
 
 const GET_COLLECTION_LENGTH = `
 import NonFungibleToken from 0xNonFungibleToken
-import CryptoKnight from 0xCryptoKnight
+import Knight from 0xCryptoKnight
 
 pub fun main(addr:Address): UInt64{
     let account = getAuthAccount(addr)
