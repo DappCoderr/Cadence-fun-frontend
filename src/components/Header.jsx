@@ -6,8 +6,10 @@ import { useLocation } from "react-router-dom";
 import * as fcl from "@onflow/fcl";
 import { useEffect } from "react";
 import { useState } from "react";
+import useCopyClipboard from "../hooks/useCopyClipboard";
 
 export default function Header() {
+  const { copy, isCopied } = useCopyClipboard();
   const location = useLocation();
   console.log(location.pathname);
   const isDocs = location.pathname === "/docs";
@@ -45,14 +47,24 @@ export default function Header() {
           </Button>
           {address ? (
             <>
-              <Button shadow="small" className="px-2 h-full rounded-lg">
-                <>
-                  <Image className="h-[14px]" src={"iconWallet.png"} />
-                  <p className="h-[12px] uppercase">
-                    {address.substring(0, 7)}...
-                    {address.substring(address.length - 5)}
-                  </p>
-                </>
+              <Button
+                onClick={() => {
+                  copy(address);
+                }}
+                shadow="small"
+                className="px-2 h-full rounded-lg"
+              >
+                {isCopied ? (
+                  <Image className="h-[14px]" src={"iconTick.png"} />
+                ) : (
+                  <>
+                    <Image className="h-[14px]" src={"iconWallet.png"} />
+                    <p className="h-[12px] uppercase">
+                      {address.substring(0, 7)}...
+                      {address.substring(address.length - 5)}
+                    </p>
+                  </>
+                )}
               </Button>
               {/* logout */}
               <Button
