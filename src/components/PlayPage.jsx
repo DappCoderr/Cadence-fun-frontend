@@ -10,15 +10,16 @@ import useKnightInfo from "../hooks/useKnightInfo";
 import LoadingPage from "./LoadingPage";
 export default function PlayPage() {
   const { knightInfo: knight1Info, loadingKnight } = useKnightInfo();
-  const knight2Info = {
-    name: "Andrew",
-    leftImg: "leftBorder2.png",
-    rightImg: "rightBorder2.png",
-    wins: 0,
-    character: "angel",
-    attack: 0,
-    color: "light-brown",
-  };
+  const { knightInfo: knight2Info } = useKnightInfo(true, "0x42491d7c0e53eba9");
+  // const knight2Info = {
+  //   name: "Andrew",
+  //   leftImg: "leftBorder2.png",
+  //   rightImg: "rightBorder2.png",
+  //   wins: 0,
+  //   character: "angel",
+  //   attack: 0,
+  //   color: "light-brown",
+  // };
   const navigate = useNavigate();
   const [isAttacking, setIsAttacking] = useState(false);
   const [lost, setLost] = useState(-1);

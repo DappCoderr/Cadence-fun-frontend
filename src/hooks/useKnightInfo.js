@@ -5,13 +5,13 @@ import { borrowKnight } from "../flow/borrowKnight.script";
 import { getId } from "../flow/getID.script";
 import { colorsTheme } from "../constants";
 
-export default function useKnightInfo(isAdmin = false) {
+export default function useKnightInfo(isAdmin = false, addr) {
   const [currentUser] = useCurrentUser();
   const [loadingKnight, setLoadingKnight] = useState(true);
   const [hasKnight, setHasKnight] = useState(false);
   const [knightInfo, setKnightInfo] = useState({});
   const [knightId, setKnightId] = useState(null);
-  const address = currentUser?.addr;
+  const address = addr || currentUser?.addr;
   const randomFromMinMan = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
   };
@@ -31,7 +31,7 @@ export default function useKnightInfo(isAdmin = false) {
       console.log("borrowKnight result", result);
       setLoadingKnight(false);
       if (!result) return;
-      setKnightInfo({
+      const data = {
         wins: result.winCount,
         attack: result.xp,
         name: result.name,
@@ -39,7 +39,14 @@ export default function useKnightInfo(isAdmin = false) {
           result.type?.length > 1
             ? colorsTheme.indexOf(result.type)
             : result.type,
-      });
+      };
+      if (isAdmin) {
+        data.leftImg = "leftBorder2.png";
+        data.rightImg = "rightBorder2.png";
+        data.character = "angel";
+        data.color = "light-brown";
+      }
+      setKnightInfo(data);
     });
   };
   useEffect(() => {
