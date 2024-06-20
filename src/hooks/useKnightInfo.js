@@ -6,7 +6,7 @@ import { borrowKnight } from "../flow/borrowKnight.script";
 export default function useKnightInfo() {
   const [currentUser] = useCurrentUser();
   const [hasKnight, setHasKnight] = useState(false);
-  const [knightInfo, setKnightInfo] = useState(null);
+  const [knightInfo, setKnightInfo] = useState({});
   useEffect(() => {
     checkKnightCollection(currentUser?.addr).then((result) => {
       console.log("result", result);
@@ -28,7 +28,7 @@ export default function useKnightInfo() {
         });
       });
     }
-  }, [hasKnight]);
+  }, [hasKnight, currentUser?.addr]);
   return {
     knightInfo,
     hasKnight,

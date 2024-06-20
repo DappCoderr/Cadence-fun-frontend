@@ -6,8 +6,9 @@ export default function Knight({
   className,
   wins = 5,
   attack = 10,
-  character,
+  character = "wizard",
   type,
+  color,
   isLeft,
   rightImg,
   leftImg,
@@ -15,8 +16,8 @@ export default function Knight({
   isLost,
   ...props
 }) {
-  const color = colorFunc(colorsType[parseInt(type)]);
-  console.log("color", color, type, colorsType[parseInt(type)]);
+  const knightColor = colorFunc((type && colorsType[parseInt(type)]) || color);
+  console.log("color", knightColor, type, colorsType[parseInt(type)]);
   const characters = {
     wizard: "wizardIdle.gif",
     angel: "angelIdle.gif",
@@ -32,7 +33,7 @@ export default function Knight({
     angel: "angelHurt.gif",
   };
   const [currentCharacter, setCurrentCharacter] = useState(
-    characters[character || "wizard"],
+    characters[character],
   );
 
   useEffect(() => {
@@ -65,7 +66,7 @@ export default function Knight({
         style={{
           boxShadow:
             "0px 2px 7.6px 0px rgba(255, 255, 255, 0.25) inset, 0px -2px 7.6px 0px rgba(255, 255, 255, 0.25) inset",
-          backgroundColor: color || "var(--brown)",
+          backgroundColor: knightColor || "var(--brown)",
         }}
         className={`${className} rounded-t-[20px]  border-black border-2 w-[284px] h-[336px] overflow-hidden`}
       >

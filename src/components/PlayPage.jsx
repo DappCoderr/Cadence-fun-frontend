@@ -6,13 +6,10 @@ import Image from "@/components/Image";
 import ShadowText from "@/components/ShadowText";
 import Knight from "@/components/Knight";
 import { useNavigate } from "react-router-dom";
+import useKnightInfo from "../hooks/useKnightInfo";
 export default function PlayPage() {
-  const [knight1Info, setKnight1Info] = useState({
-    name: "Rico",
-    color: "brown",
-    attack: 10,
-  });
-  const [knight2Info, setKnight2Info] = useState({
+  const { knightInfo: knight1Info } = useKnightInfo();
+  const knight2Info = {
     name: "Andrew",
     leftImg: "leftBorder2.png",
     rightImg: "rightBorder2.png",
@@ -20,9 +17,8 @@ export default function PlayPage() {
     character: "angel",
     attack: 0,
     color: "light-brown",
-  });
+  };
   const navigate = useNavigate();
-  const color = (col) => (col ? `var(--${col})` : "");
   const [isAttacking, setIsAttacking] = useState(false);
   const [lost, setLost] = useState(-1);
   console.log("lost", lost);
@@ -59,10 +55,12 @@ export default function PlayPage() {
               isLost={lost === 0}
               isAttacking={isAttacking}
               {...knight1Info}
-              color={color(knight1Info.color)}
             />
-            <ShadowText color={color(knight1Info.color)} className=" text-4xl">
-              {knight1Info.name || "Player 1"}
+            <ShadowText
+              color={parseInt(knight1Info.type)}
+              className=" text-4xl"
+            >
+              {knight1Info.name || "Loading..."}
             </ShadowText>
           </div>
           <ShadowText className="text-red text-[40px]">VS</ShadowText>
@@ -74,12 +72,9 @@ export default function PlayPage() {
               isAttacking={isAttacking}
               isLeft={true}
               {...knight2Info}
-              color={color(knight2Info.color)}
+              color={knight2Info.color}
             />
-            <ShadowText
-              color={color(knight2Info.color)}
-              className="text-red text-4xl"
-            >
+            <ShadowText color={knight2Info.color} className="text-red text-4xl">
               {knight2Info.name || "Player 2"}
             </ShadowText>
           </div>
