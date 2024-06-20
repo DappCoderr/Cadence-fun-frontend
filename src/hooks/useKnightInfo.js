@@ -5,7 +5,7 @@ import { borrowKnight } from "../flow/borrowKnight.script";
 import { getId } from "../flow/getID.script";
 import { colorsTheme } from "../constants";
 
-export default function useKnightInfo(isAdmin = false, addr) {
+export default function useKnightInfo(isAdmin = false, addr, dependedOn = []) {
   const [currentUser] = useCurrentUser();
   const [loadingKnight, setLoadingKnight] = useState(true);
   const [hasKnight, setHasKnight] = useState(false);
@@ -44,7 +44,6 @@ export default function useKnightInfo(isAdmin = false, addr) {
         data.leftImg = "leftBorder2.png";
         data.rightImg = "rightBorder2.png";
         data.character = "angel";
-        data.color = "light-brown";
       }
       setKnightInfo(data);
     });
@@ -68,9 +67,10 @@ export default function useKnightInfo(isAdmin = false, addr) {
       }
       handleBorrowKnight(idd);
     }
-  }, [hasKnight, address]);
+  }, [hasKnight, address, ...dependedOn]);
   return {
     knightInfo,
+    address,
     hasKnight,
     currentUser,
     knightId,

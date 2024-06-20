@@ -14,6 +14,7 @@ export async function knightAttack(
   user1KnightId,
   user2Address,
   user2KnightId,
+  setTransacting,
 ) {
   try {
     const response = await fcl.mutate({
@@ -30,7 +31,11 @@ export async function knightAttack(
       limit: 999,
     });
     console.log("response", response);
-    return response;
+    // from id, wait for the transaction to be sealed
+    setTransacting(true);
+    const res = await fcl.tx(response).onceSealed();
+    console.log("battle sealed?", res);
+    return res;
   } catch (error) {
     console.error("Error knight attack", error);
     throw error;

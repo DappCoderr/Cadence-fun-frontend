@@ -11,11 +11,15 @@ import LoadingPage from "./LoadingPage";
 // import { useSearchParams } from "react-router-dom";
 
 export default function GamePage() {
-  const { hasKnight, knightInfo, loadingKnight } = useKnightInfo();
   const { state } = useLocation();
+  const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
+  const { hasKnight, knightInfo, loadingKnight } = useKnightInfo(
+    undefined,
+    undefined,
+    [lost],
+  );
   // const [params] = useSearchParams();
   // console.log("params", params.get("status"));
-  const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
   console.log("lost", lost);
   const isResultScreen = typeof lost === "number";
   const isLost = lost === 0;

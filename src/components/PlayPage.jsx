@@ -8,9 +8,19 @@ import Knight from "@/components/Knight";
 import { useNavigate } from "react-router-dom";
 import useKnightInfo from "../hooks/useKnightInfo";
 import LoadingPage from "./LoadingPage";
+import { knightAttack } from "../flow/battle.tx";
 export default function PlayPage() {
-  const { knightInfo: knight1Info, loadingKnight } = useKnightInfo();
-  const { knightInfo: knight2Info } = useKnightInfo(true, "0x42491d7c0e53eba9");
+  const {
+    knightInfo: knight1Info,
+    loadingKnight,
+    address: address1,
+    knightId: ki1,
+  } = useKnightInfo();
+  const {
+    knightInfo: knight2Info,
+    address: address2,
+    knightId: ki2,
+  } = useKnightInfo(true, "0x42491d7c0e53eba9");
   // const knight2Info = {
   //   name: "Andrew",
   //   leftImg: "leftBorder2.png",
@@ -20,14 +30,26 @@ export default function PlayPage() {
   //   attack: 0,
   //   color: "light-brown",
   // };
+  const [isTransacting, setIsTransacting] = useState(false);
   const navigate = useNavigate();
   const [isAttacking, setIsAttacking] = useState(false);
   const [lost, setLost] = useState(-1);
   // console.log("lost", lost);
   const handleAttack = async () => {
     setIsAttacking(true);
+    const res = await knightAttack(
+      address1,
+      ki1,
+      address2,
+      ki2,
+      setIsTransacting,
+    );
+    if (!res) {
+      setIsAttacking(false);
+      return;
+    }
     let lost = -1;
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
     setIsAttacking(false);
     if ((knight1Info.attack ?? 10) > (knight2Info.attack ?? 10)) {
       setLost(1);
@@ -37,6 +59,7 @@ export default function PlayPage() {
       lost = 0;
     }
     await new Promise((resolve) => setTimeout(resolve, 1500));
+    setIsTransacting(false);
     setLost(-1);
     console.log("sending to game page");
     return lost;
@@ -74,32 +97,42 @@ export default function PlayPage() {
           {/* knight 2 */}
           <div className="flex flex-col gap-4 items-center">
             <Knight
+              isAdmin={true}
               isLost={lost == 1}
               isAttacking={isAttacking}
               isLeft={true}
               {...knight2Info}
               color={knight2Info.color}
             />
-            <ShadowText color={knight2Info.color} className="text-red text-4xl">
+            <ShadowText color={knight2Info.type} className="text-red text-4xl">
               {knight2Info.name || "Player 2"}
             </ShadowText>
           </div>
         </div>
         {/* buttons */}
-        <Button
-          shadow="large"
-          className={` px-4 py-2 bg-accent rounded-[20px] `}
-          onClick={() =>
-            handleAttack().then((lost) => {
-              // navigate("/game?status=" + lost);
-              navigate("/game", { state: { lost } });
-            })
-          }
-        >
-          <Image src={"angels/princeSlash.png"} className={" h-[28px] mr-1"} />
-          <span>Attack</span>
-          <Image src={"angels/angelSlash.png"} className={" h-[28px] mr-1"} />
-        </Button>
+        {isTransacting ? (
+          <h3 className={`text-center text-[28px]] `}>
+            Knights are waiting for transaction to complete...
+          </h3>
+        ) : (
+          <Button
+            shadow="large"
+            className={` px-4 py-2 bg-accent rounded-[20px] `}
+            onClick={() =>
+              handleAttack().then((lost) => {
+                // navigate("/game?status=" + lost);
+                navigate("/game", { state: { lost } });
+              })
+            }
+          >
+            <Image
+              src={"angels/princeSlash.png"}
+              className={" h-[28px] mr-1"}
+            />
+            <span>Attack</span>
+            <Image src={"angels/angelSlash.png"} className={" h-[28px] mr-1"} />
+          </Button>
+        )}
       </GameBackground>
     </>
   );
