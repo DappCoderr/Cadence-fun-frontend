@@ -66,6 +66,8 @@ export default function useKnightInfo(isAdmin = false, addr, dependedOn = []) {
         return;
       }
       handleBorrowKnight(idd);
+    } else {
+      setLoadingKnight(false);
     }
   }, [hasKnight, address, ...dependedOn]);
   return {
