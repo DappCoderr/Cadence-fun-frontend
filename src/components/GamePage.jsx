@@ -2,34 +2,18 @@ import Button from "@/components/Button";
 import Image from "@/components/Image";
 import Knight from "@/components/Knight";
 import ShadowText from "@/components/ShadowText";
-import * as fcl from "@onflow/fcl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import { checkKnightCollection } from "../flow/checkCollection.script";
+import useKnightInfo from "../hooks/useKnightInfo";
 import GameBackground from "./GameBackground";
 import Header from "./Header";
+// import { useSearchParams } from "react-router-dom";
+
 export default function GamePage() {
-  const [hasKnight, setHasKnight] = useState(false);
-  const [currentUser, setCurrentUser] = useState({
-    loggedIn: false,
-    addr: undefined,
-  });
-
-  useEffect(() => fcl.currentUser.subscribe(setCurrentUser), []);
-
-  useEffect(() => {
-    checkKnightCollection(currentUser?.addr).then((result) => {
-      console.log("result", result);
-      setHasKnight(result);
-    });
-  }, [currentUser?.addr]);
-
-  const knightInfo = {
-    wins: 0,
-    attack: 0,
-    name: "Rico",
-  };
+  const { hasKnight, knightInfo } = useKnightInfo();
   const { state } = useLocation();
+  // const [params] = useSearchParams();
+  // console.log("params", params.get("status"));
   const lost = state?.lost; // gives who lost as 0 or 1. 0 is us so if 0 then lose. 1 is win
   console.log("lost", lost);
   const isResultScreen = typeof lost === "number";
@@ -65,24 +49,19 @@ export default function GamePage() {
   );
 }
 
-const HasKnight = ({
-  name = "Rico",
-  wins,
-  attack,
-  character = "wizard",
-  ...props
-}) => {
+const HasKnight = ({ name = "Rico", character = "wizard", ...props }) => {
   const [loading, setLoading] = useState(false);
   return (
     <>
       <GameBackground>
         <ShadowText
+          color={Number(props.type)}
           className="text-brown tracking-wider text-[64px]"
           size={"large"}
         >
           {name}
         </ShadowText>
-        <Knight character={character} wins={wins} attack={attack} />
+        <Knight character={character} {...props} />
         <Button
           disabled={loading}
           onClick={async () => {
