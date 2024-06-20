@@ -36,12 +36,13 @@ export default function useKnightInfo() {
       let idd = id || null;
       if (!idd) {
         // get id
-        return getId(address).then((res) => {
+        getId(address).then((res) => {
           console.log("id", res);
           if (Array.isArray(res) && res.length > 0) idd = res[0];
           setId(idd);
           handleBorrowKnight(idd);
         });
+        return;
       }
       handleBorrowKnight(idd);
     }
