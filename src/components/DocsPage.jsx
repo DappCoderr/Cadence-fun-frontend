@@ -101,6 +101,7 @@ export default function DocsPage() {
       console.log("newModule", newModule);
       setSelectedLesson(data[newModule].length - 1);
     }
+    setShowSolution(false);
   };
 
   const disableNext =
