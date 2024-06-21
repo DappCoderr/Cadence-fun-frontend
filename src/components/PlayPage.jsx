@@ -37,13 +37,8 @@ export default function PlayPage() {
   // console.log("lost", lost);
   const handleAttack = async () => {
     setIsAttacking(true);
-    const res = await knightAttack(
-      address1,
-      ki1,
-      address2,
-      ki2,
-      setIsTransacting,
-    );
+    setIsTransacting(true);
+    const res = await knightAttack(address1, ki1, address2, ki2);
     if (!res) {
       setIsAttacking(false);
       return;
