@@ -114,14 +114,18 @@ export default function DocsPage() {
     fetch(basePath + `${data[selectedModule][selectedLesson]}.md`)
       .then((response) => response.text())
       .then((text) => {
+        if (!text || typeof text != "string") return;
+        if (text.includes("404: Not Found")) {
+          return;
+        }
         // console.log("text recieved from file", path, text);
-        let a = text.split(/put it to the test/i);
+        let a = text.toLowerCase().split(/put it to the test/i);
         let test = "";
         let solution = "";
         let content = "";
         if (a.length === 2) {
           content = a[0];
-          a = a[1].split(/solution !!/i);
+          a = a[1].toLowerCase().split(/solution !!/i);
           if (a.length === 2) {
             test = a[0];
             solution = a[1];
