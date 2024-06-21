@@ -195,6 +195,7 @@ export default function DocsPage() {
               {Object.keys(data).map((module, index) => (
                 <div
                   onClick={() => {
+                    setShowSolution(false);
                     setSelectedModule(module);
                     setSelectedLesson(0);
                     setShowDropdown(false);
@@ -213,6 +214,7 @@ export default function DocsPage() {
                 className={`w-full ${index == selectedLesson ? "bg-primary" : "bg-white"} flex flex-row  h-6 shadow1 rounded-[10px] items-center border-2 border-black gap-2`}
                 key={index}
                 onClick={() => {
+                  setShowSolution(false);
                   setSelectedLesson(index);
                 }}
               >

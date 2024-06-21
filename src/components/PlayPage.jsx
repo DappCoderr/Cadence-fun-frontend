@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import useKnightInfo from "../hooks/useKnightInfo";
 import LoadingPage from "./LoadingPage";
 import { knightAttack } from "../flow/battle.tx";
+
 export default function PlayPage() {
   const {
     knightInfo: knight1Info,
