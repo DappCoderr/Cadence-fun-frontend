@@ -1,5 +1,5 @@
 ---
-Lesson 14 - Events
+Lesson 13 - Events
 ---
 
 Our contract is almost finished! Now let’s add an event.

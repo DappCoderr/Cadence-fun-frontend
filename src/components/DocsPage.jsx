@@ -30,6 +30,7 @@ export default function DocsPage() {
       "Lesson 12",
       "Lesson 13",
       "Lesson 14",
+      "Lesson 15",
     ],
     "Module 3": [
       "Lesson 1",
@@ -85,7 +86,7 @@ export default function DocsPage() {
       increment > 0
     ) {
       setSelectedModule(
-        Object.keys(data)[Object.keys(data).indexOf(selectedModule) + 1],
+        Object.keys(data)[Object.keys(data).indexOf(selectedModule) + 1]
       );
       console.log("going to new module", showModel);
       setShowModel(true);
@@ -194,7 +195,9 @@ export default function DocsPage() {
           >
             {selectedModule}
             <div
-              className={`${showDropdown ? "" : "hidden"} absolute top-8 bg-white w-[105%]  border-black  border-2 shadow-2xl rounded-[10px] p-1`}
+              className={`${
+                showDropdown ? "" : "hidden"
+              } absolute top-8 bg-white w-[105%]  border-black  border-2 shadow-2xl rounded-[10px] p-1`}
             >
               {Object.keys(data).map((module, index) => (
                 <div
@@ -215,7 +218,9 @@ export default function DocsPage() {
           <div className="overflow-y-auto border-2 flex-1 w-full rounded-[10px] border-black bg-bg2 shadow2 px-2 py-3 gap-3 flex flex-col items-center">
             {data[selectedModule].map((lesson, index) => (
               <button
-                className={`w-full ${index == selectedLesson ? "bg-primary" : "bg-white"} flex flex-row  h-6 shadow1 rounded-[10px] items-center border-2 border-black gap-2`}
+                className={`w-full ${
+                  index == selectedLesson ? "bg-primary" : "bg-white"
+                } flex flex-row  h-6 shadow1 rounded-[10px] items-center border-2 border-black gap-2`}
                 key={index}
                 onClick={() => {
                   setShowSolution(false);
@@ -232,7 +237,9 @@ export default function DocsPage() {
         </div>
         {/* info part */}
         <div
-          className={` ${test ? "max-w-[50%]" : ""}  flex gap-3 flex-col h-full w-full`}
+          className={` ${
+            test ? "max-w-[50%]" : ""
+          }  flex gap-3 flex-col h-full w-full`}
         >
           <div className="p-3 overflow-y-auto border-2 flex-1 w-full rounded-[10px] border-black  bg-white  shadow2">
             {content && <Markdown path={basePath}>{content}</Markdown>}
@@ -283,8 +290,11 @@ export default function DocsPage() {
         )}
       </div>
       {/* footer */}
-      <div className="flex-shrink-0  w-full max-h-8 text-white px-6 bg-black flex-1 flex items-center text-opacity-60">
-        @copyright CadenceFun
+      <div className="flex-shrink-0 w-full max-h-8 text-lg text-white px-6 bg-black flex-1 flex items-center justify-center text-opacity-60">
+        Made by love from
+        <a className="pl-1 text-white" href="https://x.com/dappcoder_">
+          DC
+        </a>
       </div>
     </div>
   );
