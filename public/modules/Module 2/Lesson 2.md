@@ -23,11 +23,18 @@ access(all) contract HelloWorld {
 
 ### Put it to the Test
 
-1. Open [Flow Playground](https://play.flow.com/)
+1. Open Flow [Playground](https://play.flow.com/)
 2. To start building our Knight Knight, create a contract named KnightCreator with a public access modifier.
 
 In the next lesson, we'll delve deeper into how we manage data within these contracts.
 
 ### Solution !!
 
-![Alt text](image.png)
+```jsx
+access(all) contract KnightCreator {
+
+	init(){
+
+	}
+}
+```

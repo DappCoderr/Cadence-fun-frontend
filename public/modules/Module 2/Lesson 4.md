@@ -45,4 +45,26 @@ Next, we’ll learn how to organize related data using structs.
 
 ### Solution !!
 
-![Alt text](image-2.png)
+```jsx
+access(all) contract KnightCreator {
+
+	// New Code
+	access(all) resource KnightNFT{
+		access(all) var id: UInt64
+		access(all) var name: String
+		access(all) var power: UFix64
+
+		init(){
+			self.id = 1
+			self.name = "Night King"
+			self.power = 50.0
+		}
+	}
+
+	access(all) var totalSupply: UInt64
+
+	init(){
+		self.totalSupply = 0
+	}
+}
+```

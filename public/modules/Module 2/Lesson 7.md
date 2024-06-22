@@ -31,4 +31,38 @@ Next, we’ll see how to store data using these dictionaries.
 
 ### Solution !!
 
-![Alt text](image-5.png)
+```jsx
+access(all) contract KnightCreator {
+
+  // New Code
+  access(all) let storeKnight: {UInt64:String}
+
+	access(all) struct KnightDetails{
+		access(all) var name: String
+		access(all) var power: UFix64
+
+		init(){
+			self.name = "Night King"
+			self.power = 50.0
+		}
+	}
+
+	access(all) resource KnightNFT{
+		access(all) var id: UInt64
+		access(all) var details: KnightDetails
+
+		init(){
+			self.id = 1
+			self.details = KnightDetails()
+		}
+	}
+
+	access(all) var totalSupply: UInt64
+
+	init(){
+		self.totalSupply = 0
+    // New Code
+    self.storeKnight = {}
+	}
+}
+```

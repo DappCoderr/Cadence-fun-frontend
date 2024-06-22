@@ -37,4 +37,13 @@ Next, we’ll explore how to create unique and valuable entities using resources
 
 ### Solution !!
 
-![Alt text](image-1.png)
+```jsx
+access(all) contract KnightCreator {
+
+	access(all) var totalSupply: UInt64
+
+	init(){
+		self.totalSupply = 0
+	}
+}
+```

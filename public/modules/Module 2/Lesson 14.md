@@ -1,34 +1,69 @@
 ---
-Lesson 14 - Events
+Lesson 14 - Testing it out!!
 ---
 
-Our contract is almost finished! Now let’s add an event.
+In Cadence, you can't directly poke and prod your contracts. Instead, you use two tools: transactions and scripts.
 
-Events are a way for your contract to communicate that something happened on the blockchain to your app front-end, which can be ‘listening’ for certain events and take action when they happen.
+## Transactions
 
-```cadence
-// declare the event
-access(all) event IntegersAdded(x: UInt64, y: UInt64, result: UInt64);
+- What they do: Permanently change data within a contract by calling its functions. Imagine them as giving instructions to your contract.
+- Where they live: Separate files from the contract itself.
+- Two stages:
+  prepare: Access and potentially modify data in your account (covered later).
+  execute: Call the contract's functions to make changes.
 
-access(all) fun add(x: UInt64, y: UInt64): UInt64 {
-    let result: UInt64 = x + y
-    // fire an event to let the app know the function was called:
-    emit IntegersAdded(x: x, y: y, result: result)
-    return result
+An empty transaction looks like this
+
+```jsx
+transaction() {
+    prepare(signer: &Account) {
+
+    }
+
+    execute {
+
+    }
 }
 ```
 
-### **Putting it to the Test:**
+You can write a transaction to create a new Knight by calling the contract's createKnight function.
 
-1. Open Flow [Playground](https://play.flow.com/)
-2. Declare an event called New. It should pass kittyId (a UInt64), name (a String), and dna (a UInt64).
+```jsx
+import KnightCreator from 0x05
 
-Modify the createRandomKitty function to fire the NewKitty event after adding the new Kitty to our kitties array.
+transaction() {
 
-You’re going to need the Kitty’s id. For this scenario, we can use totalKitties as the id, since it will increment upon the creation of every new Kitty.
+    prepare(signer: AuthAccount) {}
 
-### Solution !!
+    execute {
+        let newKnight <- KnightCreator.createKnight()
+        log(newKnight.id)
+        destroy newKnight
+    }
+}
 
-![Alt text](image-9.png)
+```
 
-![Alt text](image-12.png)
+### Scripts:
+
+- What they do: Peek at the data stored inside a contract, but don't change anything. Think of them as spying on your contract.
+- Where they live: Separate files from the contract itself.
+- Key point: Any changes made within a script are temporary and disappear when the script finishes.
+
+An empty script looks like this
+
+```jsx
+access(all) fun main() {
+
+}
+```
+
+A script could be used to read information about existing Knights without actually changing anything.
+
+```jsx
+import KnightCreator from 0x05
+
+access(all) fun main(peopleIndex: Int): UInt64 {
+    return KnightCreator.totalSupply
+}
+```

@@ -48,4 +48,33 @@ Next, we’ll combine resources and structs to store structured information.
 
 ### Solution !!
 
-![Alt text](image-3.png)
+```jsx
+access(all) contract KnightCreator {
+
+    // New Code
+	access(all) struct KnightDetails{
+		access(all) var name: String
+		access(all) var power: UFix64
+
+		init(){
+			self.name = "Night King"
+			self.power = 50.0
+		}
+	}
+
+	// Update Code
+	access(all) resource KnightNFT{
+		access(all) var id: UInt64
+
+		init(){
+			self.id = 1
+		}
+	}
+
+	access(all) var totalSupply: UInt64
+
+	init(){
+		self.totalSupply = 0
+	}
+}
+```

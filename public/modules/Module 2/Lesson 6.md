@@ -30,4 +30,34 @@ Next, we’ll learn about dictionaries, which are essential for efficient data m
 
 ### Solution !!
 
-![Alt text](image-4.png)
+```jsx
+access(all) contract KnightCreator {
+
+	access(all) struct KnightDetails{
+		access(all) var name: String
+		access(all) var power: UFix64
+
+		init(){
+			self.name = "Night King"
+			self.power = 50.0
+		}
+	}
+
+	// New Code
+	access(all) resource KnightNFT{
+		access(all) var id: UInt64
+		access(all) var details: KnightDetails
+
+		init(){
+			self.id = 1
+			self.details = KnightDetails()
+		}
+	}
+
+	access(all) var totalSupply: UInt64
+
+	init(){
+		self.totalSupply = 0
+	}
+}
+```

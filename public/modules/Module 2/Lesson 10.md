@@ -30,7 +30,7 @@ access(all) contract Example {
 
 Note that we use the self keyword to indicate a variable that exists 1 layer outside of our function’s scope.
 
-### PUT IT TO THE TEST
+### Put it to the Test
 
 1. Open Flow [Playground](https://play.flow.com/)
 2. Use create keyword and move operator to form your first Knight.
@@ -39,4 +39,41 @@ Next, we’ll create our first Knight.
 
 ### Solution !!
 
-![Alt text](image-10.png)
+### Solution !!
+
+```jsx
+access(all) contract KnightCreator {
+
+    access(all) var totalSupply: UInt64
+
+    access(all) let storeKnight: @{UInt64:KnightNFT}
+
+	access(all) struct KnightDetails{
+		access(all) var name: String
+		access(all) var power: UFix64
+
+		init(){
+			self.name = "Night King"
+			self.power = 50.0
+		}
+	}
+
+	access(all) resource KnightNFT{
+		access(all) var id: UInt64
+		access(all) var details: KnightDetails
+
+		init(){
+			self.id = 1
+			self.details = KnightDetails()
+		}
+	}
+
+    // New Code
+    access(all) fun createKnight(){ }
+
+	init(){
+		self.totalSupply = 0
+        self.storeKnight <- {}
+	}
+}
+```

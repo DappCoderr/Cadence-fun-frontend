@@ -33,4 +33,38 @@ Next, we’ll learn how to declare and use functions in Cadence.
 
 ### Solution !!
 
-![Alt text](image-6.png)
+```jsx
+access(all) contract KnightCreator {
+
+  // New Code
+  access(all) let storeKnight: @{UInt64:KnightNFT}
+
+	access(all) struct KnightDetails{
+		access(all) var name: String
+		access(all) var power: UFix64
+
+		init(){
+			self.name = "Night King"
+			self.power = 50.0
+		}
+	}
+
+	access(all) resource KnightNFT{
+		access(all) var id: UInt64
+		access(all) var details: KnightDetails
+
+		init(){
+			self.id = 1
+			self.details = KnightDetails()
+		}
+	}
+
+	access(all) var totalSupply: UInt64
+
+	init(){
+		self.totalSupply = 0
+    // Updated Code
+    self.storeKnight <- {}
+	}
+}
+```
