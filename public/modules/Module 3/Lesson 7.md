@@ -1,5 +1,5 @@
 ---
-title: Lesson 7 - Counting Your Treasures!
+Lesson 7 - Counting Your Treasures!
 ---
 
 Keeping track of your NFTs can get tricky. That’s where the `getIDs` function comes in, allowing you to count all the unique NFTs in your collection.
@@ -25,4 +25,8 @@ access(all) resource Collection {
 
 ### Solution !!
 
-![Alt text](image-8.png)
+```jsx
+access(all) fun getIDs(): [UInt64] {
+  return self.ownedNFTs.keys
+}
+```

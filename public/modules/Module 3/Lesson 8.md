@@ -1,5 +1,5 @@
 ---
-title: Lesson 8 - The Interfaces
+Lesson 8 - The Interfaces
 ---
 
 Congrats for making this far. Wooh!!
@@ -34,4 +34,9 @@ access(all) resource ToyNFTCollection: ToyInterface {
 
 ### Solution !!
 
-![Alt text](image-10.png)
+```jsx
+access(all) resource interface CollectionPublic {
+  access(all) fun deposit(token: @KnightNFT) // Add an NFT
+  access(all) fun getIDs(): [UInt64] // Get all NFT TOS
+}
+```

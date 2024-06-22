@@ -1,5 +1,5 @@
 ---
-title: Lesson 4 - Improvise the contract using NFT standard
+Lesson 4 - Improvise the contract using NFT standard
 ---
 
 Update contract and NFT Resource, Add the `NonFungibleToken` to represent this contract follow non-fungible token standard and change the KnightNFT resource to NFT resource and use NonFungibleToken NFT interface `NonFungibleToken.INFT`. Make sure change the id variable to `let` as it provided by the standard.
@@ -27,4 +27,7 @@ access(all) contract HelloWorld: NonFungibleToken {
 
 ### Solution !!
 
-![Alt text](image-3.png)
+```jsx
+import NonFungibleToken from 0x05
+access(all) contract KnightCreator (
+```

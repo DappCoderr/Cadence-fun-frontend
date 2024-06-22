@@ -1,5 +1,5 @@
 ---
-title: Lesson 1 - The Last Adventurer!
+Lesson 1 - The Last Adventurer!
 ---
 
 Hey Hey there, champion! We're nearing the end of our grand adventure in Module 4! Remember how we built our awesome Knight and learned to keep it safe? This time, we're about to uncover something even cooler!

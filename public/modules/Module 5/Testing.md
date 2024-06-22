@@ -1,5 +1,5 @@
 ---
-title: Testing it Out!!
+Testing it Out!!
 ---
 
 Before moving forward let’s test our contract by running transaction and script. Before that don’t forget to deploy the contract.

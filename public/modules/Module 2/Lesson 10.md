@@ -1,5 +1,5 @@
 ---
-title: Lesson 10 - Math
+Lesson 10 - Math
 ---
 
 Math in Cadence is pretty straightforward. The following operations are the same as in most programming languages:

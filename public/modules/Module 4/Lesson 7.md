@@ -1,5 +1,5 @@
 ---
-title: Lesson 7 - Borrow Function
+Lesson 7 - Borrow Function
 ---
 
 Imagine a world where your Flow NFT collection is like a bustling library! Users can now "borrow" your awesome NFTs with the brand new borrowNFT function. This lets them get a closer look or interact with your NFTs temporarily, just like checking out a book. Here's how it works:
@@ -20,4 +20,14 @@ The `borrowNFT` function takes an `id` parameter representing the unique identif
 
 ### Solution !!
 
-![Alt text](image-6.png)
+```jsx
+access(all) fun borrowNFT(id: UInt64): &NonFungibleToken.NFT {
+
+  if self.ownedNFTs[id] != nil {
+    return (&self.ownedNFTs[id] as &NonFungibleToken.NFT?)!
+  }
+
+  panic("NFT not found in collection.")
+
+}
+```

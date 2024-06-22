@@ -1,5 +1,5 @@
 ---
-title: Lesson 2 - Token on Flow
+Lesson 2 - Token on Flow
 ---
 
 Let's talk about tokens.

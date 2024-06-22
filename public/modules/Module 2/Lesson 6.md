@@ -1,5 +1,5 @@
 ---
-title: Lesson 6 - Resources with Structs
+Lesson 6 - Resources with Structs
 ---
 
 Remember the `World` resource and `Country` struct from Lesson 4 and 5? let's use in this lesson.

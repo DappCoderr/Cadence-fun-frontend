@@ -1,5 +1,5 @@
 ---
-title: Lesson 8 - Creating Storage
+Lesson 8 - Creating Storage
 ---
 
 Now, let's put our knowledge of resources and dictionaries into action by storing Knights in our smart contract.To do this, we'll create a dictionary in the contract that stores Knights resource as value and ID as key.

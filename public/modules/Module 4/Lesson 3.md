@@ -1,5 +1,5 @@
 ---
-title: Lesson 3 - Import
+Lesson 3 - Import
 ---
 
 When you want to use external code in your project, Cadence provides the import keyword to bring pre-written code into your code, making your work faster!
@@ -21,4 +21,7 @@ import NBATopShot from 0x299F20A29311B9248F12
 
 ### Solution !!
 
-![Alt text](image-2.png)
+```jsx
+import NonFungibleToken from 0x05
+access(all) contract KnightCreator (
+```

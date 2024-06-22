@@ -1,5 +1,5 @@
 ---
-title: Lesson 10 - Organize Your Path
+Lesson 10 - Organize Your Path
 ---
 
 ```cadence

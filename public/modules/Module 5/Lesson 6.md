@@ -1,5 +1,5 @@
 ---
-title: Lesson 6 - enum
+Lesson 6 - enum
 ---
 
 Remember our - `type` variable which needs to pass static value like - fire, water, rock, grass, electric, ice, flying, ghost, dark, steel, dragon, poison, fighting etc.

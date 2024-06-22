@@ -1,5 +1,5 @@
 ---
-title: Lesson 8 - Refactoring Create Knight
+Lesson 8 - Refactoring Create Knight
 ---
 
 let's refactor

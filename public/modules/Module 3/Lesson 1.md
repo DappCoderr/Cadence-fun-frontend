@@ -1,5 +1,5 @@
 ---
-title: Lesson 1 - Account Storage - Dive into Your Own Vault!
+Lesson 1 - Account Storage - Dive into Your Own Vault!
 ---
 
 Welcome back, adventurer! In this lesson, we'll explore how to store your Knight NFT securely within your Flow account. Sound exciting right? Let's see how we can do it.

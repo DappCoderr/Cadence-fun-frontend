@@ -1,5 +1,5 @@
 ---
-title: Lesson 2 - Collection
+Lesson 2 - Collection
 ---
 
 Previously we have store our NFT in contract, now we will learn how to organizing your Knight NFT into personalized space using new concept called **_Collection_** rather than storing in the contract space.
@@ -29,5 +29,29 @@ access(all) contract HelloWorld: NonFungibleToken {
 
 ### Solution !!
 
-![Alt text](image-4.png)
-![Alt text](image-5.png)
+```jsx
+// KnightCreator.cdc
+
+// This code defines a contract named KnightCreator.
+
+contract KnightCreator {
+
+    // The total supply of Knights that can be created.
+    var totalSupply: UInt64
+
+    // Removed:
+    // access(all) let storedKnight: @(UInt64: KnightNFT)
+
+    // Defines a struct to store details about a Knight.
+    struct KnightDetails {
+        var name: String
+        var power: UFix64
+
+        // Initializes a new KnightDetails instance.
+        init() {
+            self.name = "Night King"
+            self.power = 50.0
+        }
+    }
+}
+```

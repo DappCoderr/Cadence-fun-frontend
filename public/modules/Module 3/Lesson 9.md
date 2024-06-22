@@ -1,5 +1,5 @@
 ---
-title: Lesson 9 - Building Your Vault
+Lesson 9 - Building Your Vault
 ---
 
 Remember all those cool NFTs you've been collecting? What if you find a new one you love, but don't have a place to store it yet? No worries, adventurer! Today's lesson is about creating collections instantly, whenever you need them.
@@ -24,4 +24,9 @@ access(all) fun createEmptyCollection(): @ToyNFTCollection {
 
 ### Solution !!
 
-![Alt text](image-11.png)
+```jsx
+access(all) fun create EmptyCollection(): @Collection {
+  // Use the magic "create" keyword to build a brand new collection on the blockchain
+  return <- create Collection()
+}
+```

@@ -1,5 +1,5 @@
 ---
-title: That’s a wrap
+That’s a wrap
 ---
 
 Hey, congratulations on completing Module 2! 🥳 🎉

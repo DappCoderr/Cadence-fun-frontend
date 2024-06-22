@@ -1,5 +1,5 @@
 ---
-title: Lesson 5 - Tracking Victories
+Lesson 5 - Tracking Victories
 ---
 
 Remember our winCount variable we created lesson 2. We will use that variable in this lesson.

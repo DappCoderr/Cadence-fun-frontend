@@ -1,5 +1,5 @@
 ---
-title: Lesson 6 - Adding Provider, Receiver, CollectionPublic
+Lesson 6 - Adding Provider, Receiver, CollectionPublic
 ---
 
 Building your own NFT collection? That's fantastic! But what if you could make it even more interesting for people to use? In this lesson we will learn how to add features that let people interact with your NFTs in new ways.
@@ -47,4 +47,38 @@ pub resource Collection: NonFungibleToken.Provider, NonFungibleToken.Receiver, N
 
 ### Solution !!
 
-![Alt text](image-5.png)
+```jsx
+access (all) resource interface CollectionPublic (-
+
+access(all) resource Collection: CollectionPublic, NonFungibleToken. Provider, NonFungibleToken. Receiver, NonFungibleToken.CollectionPublic {
+
+  access(all) var ownedNFTs: @(UInt64: NonFungibleToken.NFT}
+
+  Init() {self.ownedNFTs <-{}}
+
+  access(all) fun withdraw(withdrawID: UInt64): Non FungibleToken.NFT {
+  let token <- self.ownedNFTs.remove(key: withdrawID) ?? panic("Token not in collection")
+
+  emit Withdraw(id: token.id, from: self.owner?.address)
+  return token
+}
+
+  access(all) fun deposit(token: @Non FungibleToken.NFT) {
+  let tokenID
+    token.id
+
+  self.ownedNFTS[tokenID] <-! token
+  emit Deposit(id: tokenID, to: self.owner?.address)
+}
+
+  access (all) fun getIDs(): [UInt64] {
+    return self.ownedNFTs.keys
+  }
+
+  access(all) fun borrowNFT(id: UInt64): &NonFungibleToken.NFT
+
+  destroy (){ destroy self.ownedNFTs)
+}
+
+deploy ()
+```

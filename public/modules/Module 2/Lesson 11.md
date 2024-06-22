@@ -1,5 +1,5 @@
 ---
-title: Lesson 11 - Creating Knight
+Lesson 11 - Creating Knight
 ---
 
 Let's create our first Knight using the createKnight function we defined earlier.

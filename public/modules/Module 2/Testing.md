@@ -1,5 +1,5 @@
 ---
-title: Testing it out!!
+Testing it out!!
 ---
 
 In Cadence, you can't directly poke and prod your contracts. Instead, you use two tools: transactions and scripts.

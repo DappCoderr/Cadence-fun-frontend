@@ -1,5 +1,5 @@
 ---
-title: Lesson 6 - Deposit Function
+Lesson 6 - Deposit Function
 ---
 
 Just like you can withdraw an NFT, you can also add new ones with the deposit function, which acts as a special entrance to your collection.
@@ -29,4 +29,9 @@ access(all) resource Collection {
 
 ### Solution !!
 
-![Alt text](image-7.png)
+```jsx
+access(all) fun deposit (token: @KnightNFT) {
+  let tokenID = token.id
+  self.ownedNFTs [tokenID] <-! token
+}
+```

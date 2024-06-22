@@ -1,5 +1,5 @@
 ---
-title: Lesson 3 - Understanding Cadence Operators
+Lesson 3 - Understanding Cadence Operators
 ---
 
 Before diving into building our contract further, let's explore Cadence operators, which are like specialized tools designed to solve various coding challenges.

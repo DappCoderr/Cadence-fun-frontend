@@ -1,5 +1,5 @@
 ---
-title: Lesson 12 - Saving Knight
+Lesson 12 - Saving Knight
 ---
 
 Now, let's store Knights in our contract in the storage we created in lesson 8.

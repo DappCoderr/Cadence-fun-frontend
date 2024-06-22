@@ -1,5 +1,5 @@
 ---
-title: Lesson 1 - Overview
+Lesson 1 - Overview
 ---
 
 Welcome to the final stage of your NFT game development journey!

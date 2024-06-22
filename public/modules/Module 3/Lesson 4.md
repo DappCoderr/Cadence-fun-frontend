@@ -1,5 +1,5 @@
 ---
-title: Lesson 4 - destory()
+Lesson 4 - destory()
 ---
 
 In last lesson you have seen the nested resource, but have you notice we haven't discuss about destroy function we have define. Right?
@@ -22,4 +22,26 @@ access(all) resource Collection {
 
 ### Solution !!
 
-![Alt text](image-6.png)
+```jsx
+KnightCreator.cdc
+
+access(all) resource Collection {
+
+  // Create a new dictionary of type resource
+  access(all) var ownedNFTs: @(UInt64: KnightNFT)
+
+  init() {
+  // Assigning an empty dictionary to ownedNFTs  self.ownedNFTS <- {}
+
+  }
+
+  // Define the destructor
+  destroy (){
+
+  destroy self.ownedNFTs
+
+  }
+
+
+{
+```

@@ -1,5 +1,5 @@
 ---
-title: Lesson 1 - Welcome
+Lesson 1 - Welcome
 ---
 
 ## Welcome to Cadence Fun Developers!

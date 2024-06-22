@@ -1,5 +1,5 @@
 ---
-title: Lesson 5 - Adding Standard Events
+Lesson 5 - Adding Standard Events
 ---
 
 Are you getting some error? Don't worry we will resolve them now.
@@ -32,4 +32,29 @@ The `borrowNFT` function takes an `id` parameter representing the unique identif
 
 ### Solution !!
 
-![Alt text](image-4.png)
+```jsx
+import NonFungibleToken from 0x05
+
+access(all) contract KnightCreator: NonFungibleToken (
+
+access(all) var totalSupply: UInt64
+
+access(all) struct KnightDetails {
+
+}
+
+access(all) resource NFT: NonFungibleToken.INFT {
+
+  access(all) let id: UInt64
+  access(all) var details: KnightDetails
+
+  init() {
+    self.id <- KnightCreator.totalSupply
+    self.details <- KnightDetails()
+  }
+
+  destroy() {
+    KnightCreator.totalSupply = KnightCreator.totalSupply - 1
+  }
+}
+```

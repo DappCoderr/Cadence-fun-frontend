@@ -1,5 +1,5 @@
 ---
-title: Lesson 2 - Contract in Flow
+Lesson 2 - Contract in Flow
 ---
 
 Let's start from the very beginning:

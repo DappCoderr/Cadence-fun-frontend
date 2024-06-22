@@ -1,5 +1,5 @@
 ---
-title: Lesson 5 - Withdraw Function
+Lesson 5 - Withdraw Function
 ---
 
 Great job! Now you have your Knight NFT stored in your collection. But what if you want to take a special NFT out for a spin? Maybe you want to trade it for something else, or even sell it on a marketplace! That's where the withdraw function comes in!
@@ -36,4 +36,11 @@ access(all) resource Collection {
 
 ### Solution !!
 
-![Alt text](image-12.png)
+```jsx
+access(all) fun withdraw(withdrawID: UInt64): @KnightNFT {
+
+  let token <- self.ownedNFTs.remove(key: withdrawID) ?? panic("Token not found in collection")
+  return <- token
+
+}
+```
